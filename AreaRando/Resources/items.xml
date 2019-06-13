@@ -1,0 +1,2032 @@
+<randomizer>
+<!--TRANSITIONS-->
+  <!--King's Pass-->
+  <transition name="Tutorial_01[right1]">
+    <sceneName>Tutorial_01</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Kings_Pass</areaName>
+    <logic></logic>
+  </transition>
+  <transition name="Tutorial_01[top1]">
+    <sceneName>Tutorial_01</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Kings_Pass</areaName>
+    <oneWay>2</oneWay>
+  </transition>
+  <transition name="Tutorial_01[top2]">
+    <sceneName>Tutorial_01</sceneName>
+    <doorName>top2</doorName>
+    <areaName>Kings_Pass</areaName>
+    <logic>CLAW</logic>
+  </transition>
+  <!--Dirtmouth-->
+  <transition name="Town[left1]">
+    <sceneName>Town</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Dirtmouth</areaName>
+    <logic>(DIRTMOUTH + CLAW) | (Town[right1] + SUPERDASH)</logic>
+  </transition>
+  <transition name="Town[bot1]">
+    <sceneName>Town</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>Dirtmouth</areaName>
+    <logic>DIRTMOUTH</logic>
+  </transition>
+  <transition name="Town[right1]">
+    <sceneName>Town</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Dirtmouth</areaName>
+    <logic>DIRTMOUTH + CLAW + SUPERDASH + WINGS</logic>
+  </transition>
+  <transition name="Town[top1]">
+    <sceneName>Town</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Dirtmouth</areaName>
+    <oneWay>2</oneWay>
+  </transition>
+  <!--Forgotten Crossroads-->
+  <transition name="Crossroads_01[top1]">
+    <sceneName>Crossroads_01</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Forgotten_Crossroads</areaName>
+    <logic>CROSSROADS</logic>
+  </transition>
+  <transition name="Crossroads_11_alt[left1]">
+    <sceneName>Crossroads_11_alt</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Forgotten_Crossroads</areaName>
+    <logic>CROSSROADS + BALDURS</logic>
+    <deadEnd>true</deadEnd>
+  </transition>
+  <transition name="Crossroads_35[bot1]">
+    <sceneName>Crossroads_35</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>Forgotten_Crossroads</areaName>
+    <logic>CROSSROADS + ((CLAW + SUPERDASH) | (WINGS + DASH) | ACID)</logic>
+  </transition>
+  <transition name="Crossroads_18[bot1]">
+    <sceneName>Crossroads_18</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>Forgotten_Crossroads</areaName>
+    <logic>CROSSROADS + (DASH | WINGS | INFECTED | (CLAW + (FIREBALL | SCREAM)))</logic>
+  </transition>
+  <transition name="Crossroads_04[right1]">
+    <sceneName>Crossroads_04</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Forgotten_Crossroads</areaName>
+    <logic>CROSSROADS + (INFECTED | CLAW | WINGS | (FIREBALL + DASH))</logic>
+  </transition>
+  <transition name="Mines_33[right1]">
+    <sceneName>Mines_33</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Forgotten_Crossroads</areaName>
+    <logic>CROSSROADS + LANTERN</logic>
+  </transition>
+  <transition name="Crossroads_45[right1]">
+    <sceneName>Crossroads_45</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Forgotten_Crossroads</areaName>
+    <logic>CROSSROADS</logic>
+  </transition>
+  <transition name="Crossroads_06[door1]">
+    <sceneName>Crossroads_06</sceneName>
+    <doorName>door1</doorName>
+    <areaName>Forgotten_Crossroads</areaName>
+    <logic>CROSSROADS</logic>
+  </transition>
+  <!--Greenpath-->
+  <transition name="Fungus1_01[right1]">
+    <sceneName>Fungus1_01</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Greenpath</areaName>
+    <logic>GREENPATH</logic>
+  </transition>
+  <transition name="Fungus1_20_v02[right1]">
+    <sceneName>Fungus1_20_v02</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Greenpath</areaName>
+    <logic>GREENPATH</logic>
+  </transition>
+  <transition name="Fungus1_11[bot1]">
+    <sceneName>Fungus1_11</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>Greenpath</areaName>
+    <logic>GREENPATH</logic>
+  </transition>
+  <transition name="Fungus1_13[left1]">
+    <sceneName>Fungus1_13</sceneName>
+    <doorName>left1</doorName>
+    <isolated>true</isolated>
+    <deadEnd>true</deadEnd>
+  </transition>
+  <!--Fog Canyon-->
+  <transition name="Fungus3_01[top1]">
+    <sceneName>Fungus3_01</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Fog_Canyon</areaName>
+    <logic>LEFTFOGCANYON</logic>
+  </transition>
+  <transition name="Fungus3_44[bot1]">
+    <sceneName>Fungus3_44</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>Fog_Canyon</areaName>
+    <logic>LEFTFOGCANYON + SHADOWDASH</logic>
+  </transition>
+  <transition name="Fungus3_44[door1]">
+    <sceneName>Fungus3_44</sceneName>
+    <doorName>door1</doorName>
+    <areaName>Fog_Canyon</areaName>
+    <logic>LEFTFOGCANYON + (CLAW | WINGS)</logic>
+  </transition>
+  <transition name="Fungus3_03[left1]">
+    <sceneName>Fungus3_03</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Fog_Canyon</areaName>
+    <logic>LEFTFOGCANYON + ((CLAW + SUPERDASH) | ACID)</logic>
+  </transition>
+  <transition name="Fungus3_02[right2]">
+    <sceneName>Fungus3_02</sceneName>
+    <doorName>right2</doorName>
+    <areaName>Fog_Canyon</areaName>
+    <logic>LEFTFOGCANYON</logic>
+  </transition>
+  <transition name="Fungus3_26[top1]">
+    <sceneName>Fungus3_26</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Fog_Canyon</areaName>
+    <logic>RIGHTFOGCANYON + (CLAW | WINGS)</logic>
+  </transition>
+  <transition name="Fungus3_26[right1]">
+    <sceneName>Fungus3_26</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Fog_Canyon</areaName>
+    <logic>RIGHTFOGCANYON</logic>
+  </transition>
+  <!--Fungal Wastes-->
+  <transition name="Fungus2_01[left1]">
+    <sceneName>Fungus2_01</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Fungal_Wastes</areaName>
+    <logic>FUNGALWASTES</logic>
+  </transition>
+  <transition name="Fungus2_33[left1]">
+    <sceneName>Fungus2_33</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Fungal_Wastes</areaName>
+    <logic>FUNGALWASTES + ACID</logic>
+  </transition>
+  <transition name="Fungus2_06[top1]">
+    <sceneName>Fungus2_06</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Fungal_Wastes</areaName>
+    <logic>FUNGALWASTES</logic>
+  </transition>
+  <transition name="Fungus2_21[right1]">
+    <sceneName>Fungus2_21</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Fungal_Wastes</areaName>
+    <logic>FUNGALWASTES + CREST + (ACID | SUPERDASH | (CLAW + (WINGS | DASH)))</logic>
+  </transition>
+  <transition name="Fungus2_23[right2]">
+    <sceneName>Fungus2_23</sceneName>
+    <doorName>right2</doorName>
+    <areaName>Fungal_Wastes</areaName>
+    <logic>FUNGALWASTES + (CLAW | WINGS) + LEFTWATERWAYS</logic>
+  </transition>
+  <transition name="Fungus2_15[left1]">
+    <sceneName>Fungus2_15</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Fungal_Wastes</areaName>
+    <logic>FUNGALWASTES + (CLAW | WINGS)</logic>
+  </transition>
+  <transition name="Fungus2_30[bot1]">
+    <sceneName>Fungus2_30</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>Fungal_Wastes</areaName>
+    <logic>FUNGALWASTES + (CLAW + WINGS)</logic>
+    <oneWay>1</oneWay>
+  </transition>
+  <transition name="Deepnest_01[bot1]">
+    <sceneName>Deepnest_01</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>Fungal_Wastes</areaName>
+    <isolated>true</isolated>
+  </transition>
+  <transition name="Deepnest_01[bot2]">
+    <sceneName>Deepnest_01</sceneName>
+    <doorName>bot2</doorName>
+    <areaName>Fungal_Wastes</areaName>
+    <logic>(FUNGALWASTES + (CLAW | WINGS)) | Deepnest_01[bot1] | Deepnest_01[left1]</logic>
+    <oneWay>1</oneWay>
+  </transition>
+  <transition name="Deepnest_01[left1]">
+    <sceneName>Deepnest_01</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Fungal_Wastes</areaName>
+    <logic>(FUNGALWASTES + (CLAW | WINGS)) | Deepnest_01[bot1]</logic>
+  </transition>
+  <!--Deepnest-->
+  <transition name="Deepnest_01b[top1]">
+    <sceneName>Deepnest_01b</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Deepnest</areaName>
+    <logic>DEEPNEST + (CLAW + (DASH | WINGS | SUPERDASH))</logic>
+  </transition>
+  <transition name="Deepnest_01b[top2]">
+    <sceneName>Deepnest_01b</sceneName>
+    <doorName>top2</doorName>
+    <areaName>Deepnest</areaName>
+    <oneWay>2</oneWay>
+  </transition>
+  <transition name="Fungus2_25[top2]">
+    <sceneName>Fungus2_25</sceneName>
+    <doorName>top2</doorName>
+    <areaName>Deepnest</areaName>
+    <isolated>true</isolated>
+    <oneWay>2</oneWay>
+  </transition>
+  <transition name="Fungus2_25[right1]">
+    <sceneName>Fungus2_25</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Deepnest</areaName>
+    <logic>Fungus2_25[top2] + FUNGALWASTES + (CLAW | WINGS)</logic>
+  </transition>
+  <transition name="Deepnest_42[top1]">
+    <sceneName>Deepnest_42</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Deepnest</areaName>
+    <logic>DEEPNEST + LANTERN + CLAW</logic>
+  </transition>
+  <!--Kingdom's Edge-->
+  <transition name="Deepnest_East_03[left1]">
+    <sceneName>Deepnest_East_03</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Kingdoms_Edge</areaName>
+    <logic>CENTRALKINGDOMSEDGE | (LOWERKINGDOMSEDGE + (CLAW | WINGS))</logic>
+  </transition>
+  <transition name="Abyss_03_c[right1]">
+    <sceneName>Abyss_03_c</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Kingdoms_Edge</areaName>
+    <logic>LOWERKINGDOMSEDGE</logic>
+  </transition>
+  <transition name="Deepnest_East_01[right1]">
+    <sceneName>Deepnest_East_01</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Kingdoms_Edge</areaName>
+    <isolated>true</isolated>
+  </transition>
+  <transition name="Deepnest_East_02[top1]">
+    <sceneName>Deepnest_East_02</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Kingdoms_Edge</areaName>
+    <logic>(LOWERKINGDOMSEDGE + (CLAW | WINGS))</logic>
+  </transition>
+  <transition name="Deepnest_East_02[bot2]">
+    <sceneName>Deepnest_East_02</sceneName>
+    <doorName>bot2</doorName>
+    <areaName>Kingdoms_Edge</areaName>
+    <logic>LOWERKINGDOMSEDGE + (CLAW | WINGS) + QUAKE + (ACID | (CLAW + SUPERDASH))</logic>
+  </transition>
+  <transition name="Deepnest_East_07[left2]">
+    <sceneName>Deepnest_East_07</sceneName>
+    <doorName>left2</doorName>
+    <areaName>Kingdoms_Edge</areaName>
+    <logic>(CENTRALKINGDOMSEDGE | LOWERKINGDOMSEDGE) + (CLAW | WINGS)</logic>
+  </transition>
+  <transition name="Deepnest_East_09[left1]">
+    <sceneName>Deepnest_East_09</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Kingdoms_Edge</areaName>
+    <logic>(CENTRALKINGDOMSEDGE | LOWERKINGDOMSEDGE) + (CLAW | WINGS)</logic>
+    <deadEnd>true</deadEnd>
+  </transition>
+  <!--Hive-->
+  <transition name="Hive_01[left1]">
+    <sceneName>Hive_01</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Hive</areaName>
+    <logic>HIVE + (CLAW | WINGS)</logic>
+  </transition>
+  <transition name="Hive_03_c[left1]">
+    <sceneName>Hive_03_c</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Hive</areaName>
+    <logic>HIVE + (CLAW | WINGS)</logic>
+  </transition>
+  <transition name="Hive_03[top1]">
+    <sceneName>Hive_03</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Hive</areaName>
+    <isolated>true</isolated>
+    <deadEnd>true</deadEnd>
+  </transition>
+  <!--Ancient Basin-->
+  <transition name="Abyss_02[right1]">
+    <sceneName>Abyss_02</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Ancient_Basin</areaName>
+    <logic>ANCIENTBASIN + (CLAW | WINGS)</logic>
+  </transition>
+  <transition name="Abyss_04[bot1]">
+    <sceneName>Abyss_04</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>Ancient_Basin</areaName>
+    <logic>ANCIENTBASIN</logic>
+  </transition>
+  <!--Abyss-->
+  <transition name="Abyss_06_Core[top1]">
+    <sceneName>Abyss_06_Core</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Abyss</areaName>
+    <isolated>true</isolated>
+    <deadEnd>true</deadEnd>
+  </transition>
+  <!--Royal Waterways-->
+  <transition name="Waterways_01[top1]">
+    <sceneName>Waterways_01</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Royal_Waterways</areaName>
+    <logic>LEFTWATERWAYS + CLAW + LEFTCITY + SIMPLE1</logic>
+  </transition>
+  <transition name="Waterways_09[left1]">
+    <sceneName>Waterways_09</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Royal_Waterways</areaName>
+    <logic>LEFTWATERWAYS + (CLAW | WINGS)</logic>
+    <deadEnd>true</deadEnd>
+  </transition>
+  <transition name="Room_GG_Shortcut[top1]">
+    <sceneName>Room_GG_Shortcut</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Royal_Waterways</areaName>
+    <logic>LEFTWATERWAYS + CLAW + (DASH | WINGS | SUPERDASH) + QUAKE</logic>
+  </transition>
+  <transition name="Abyss_01[right1]">
+    <sceneName>Abyss_01</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Royal_Waterways</areaName>
+    <logic>(Abyss_01[left3] + CLAW) | (LEFTWATERWAYS + (CLAW | WINGS)) | (RIGHTWATERWAYS + SUPERDASH + CLAW)</logic>
+  </transition>
+  <transition name="Abyss_01[left3]">
+    <sceneName>Abyss_01</sceneName>
+    <doorName>left3</doorName>
+    <areaName>Royal_Waterways</areaName>
+    <logic>Abyss_01[right1] | (LEFTWATERWAYS + (CLAW | WINGS | SUPERDASH)) | (RIGHTWATERWAYS + SUPERDASH + CLAW)</logic>
+  </transition>
+  <transition name="Waterways_07[door1]">
+    <sceneName>Waterways_07</sceneName>
+    <doorName>door1</doorName>
+    <areaName>Royal_Waterways</areaName>
+    <logic>RIGHTWATERWAYS + CLAW + (SUPERDASH | ACID)</logic>
+  </transition>
+  <transition name="Waterways_14[bot2]">
+    <sceneName>Waterways_14</sceneName>
+    <doorName>bot2</doorName>
+    <areaName>Royal_Waterways</areaName>
+    <isolated>true</isolated>
+  </transition>
+  <!--City of Tears-->
+  <transition name="Ruins2_04[left2]">
+    <sceneName>Ruins2_04</sceneName>
+    <doorName>left2</doorName>
+    <areaName>City_of_Tears</areaName>
+    <logic>RIGHTCITY</logic>
+  </transition>
+  <transition name="Ruins2_07[right1]">
+    <sceneName>Ruins2_07</sceneName>
+    <doorName>right1</doorName>
+    <areaName>City_of_Tears</areaName>
+    <logic>RIGHTCITY</logic>
+  </transition>
+  <transition name="Ruins2_11_b[right1]">
+    <sceneName>Ruins2_11_b</sceneName>
+    <doorName>right1</doorName>
+    <areaName>City_of_Tears</areaName>
+    <isolated>true</isolated>
+  </transition>
+  <transition name="Ruins2_10b[right1]">
+    <sceneName>Ruins2_10b</sceneName>
+    <doorName>right1</doorName>
+    <areaName>City_of_Tears</areaName>
+    <logic>RIGHTCITY + CLAW</logic>
+  </transition>
+  <transition name="Ruins1_01[left1]">
+    <sceneName>Ruins1_01</sceneName>
+    <doorName>left1</doorName>
+    <areaName>City_of_Tears</areaName>
+    <logic>LEFTCITY + (CLAW | WINGS)</logic>
+  </transition>
+  <transition name="Ruins1_05b[bot1]">
+    <sceneName>Ruins1_05b</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>City_of_Tears</areaName>
+    <logic>LEFTCITY + SIMPLE1</logic>
+  </transition>
+  <transition name="Ruins_House_03[left2]">
+    <sceneName>Ruins_House_03</sceneName>
+    <doorName>left2</doorName>
+    <areaName>City_of_Tears</areaName>
+    <isolated>true</isolated>
+  </transition>
+  <transition name="Ruins1_04[bot1]">
+    <sceneName>Ruins1_04</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>City_of_Tears</areaName>
+    <isolated>true</isolated>
+  </transition>
+  <!--Resting Grounds-->
+  <transition name="RestingGrounds_02[top1]">
+    <sceneName>RestingGrounds_02</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Resting_Grounds</areaName>
+    <oneWay>2</oneWay>
+  </transition>
+  <transition name="Crossroads_50[left1]">
+    <sceneName>Crossroads_50</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Resting_Grounds</areaName>
+    <logic>LOWERRESTINGGROUNDS + (CLAW | WINGS)</logic>
+  </transition>
+  <!--Crystal Peak-->
+  <transition name="Mines_01[left1]">
+    <sceneName>Mines_01</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Crystal_Peak</areaName>
+    <isolated>true</isolated>
+  </transition>
+  <transition name="Mines_02[left1]">
+    <sceneName>Mines_02</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Crystal_Peak</areaName>
+    <logic>CRYSTALPEAK</logic>
+  </transition>
+  <transition name="Mines_10[left1]">
+    <sceneName>Mines_10</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Crystal_Peak</areaName>
+    <logic>CRYSTALPEAK + CLAW + SUPERDASH</logic>
+  </transition>
+  <transition name="Mines_28[bot1]">
+    <sceneName>Mines_28</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>Crystal_Peak</areaName>
+    <logic>CRYSTALPEAK | Mines_28[door1]</logic>
+    <oneWay>1</oneWay>
+  </transition>
+  <transition name="Mines_28[door1]">
+    <sceneName>Mines_28</sceneName>
+    <doorName>door1</doorName>
+    <areaName>Crystal_Peak</areaName>
+    <logic>CRYSTALPEAK + (SUPERDASH | (WINGS + DASH))</logic>
+  </transition>
+  <!--Howling Cliffs-->
+  <transition name="Fungus1_28[left2]">
+    <sceneName>Fungus1_28</sceneName>
+    <doorName>left2</doorName>
+    <areaName>Howling_Cliffs</areaName>
+    <logic>HOWLINGCLIFFS</logic>
+  </transition>
+  <transition name="Cliffs_02[bot1]">
+    <sceneName>Cliffs_02</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>Howling_Cliffs</areaName>
+    <isolated>true</isolated>
+  </transition>
+  <transition name="Cliffs_02[bot2]">
+    <sceneName>Cliffs_02</sceneName>
+    <doorName>bot2</doorName>
+    <areaName>Howling_Cliffs</areaName>
+    <logic>HOWLINGCLIFFS</logic>
+    <oneWay>1</oneWay>
+  </transition>
+  <transition name="Cliffs_02[right1]">
+    <sceneName>Cliffs_02</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Howling_Cliffs</areaName>
+    <logic>HOWLINGCLIFFS + (SUPERDASH | (WINGS + DASH))</logic>
+    <oneWay>1</oneWay>
+  </transition>
+<!--Queen's Gardens-->
+  <transition name="Fungus3_34[right1]">
+    <sceneName>Fungus3_34</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Queens_Gardens</areaName>
+    <logic>QUEENSGARDENS</logic>
+  </transition>
+  <transition name="Fungus3_34[top1]">
+    <sceneName>Fungus3_34</sceneName>
+    <doorName>top1</doorName>
+    <areaName>Queens_Gardens</areaName>
+    <logic>QUEENSGARDENS + (CLAW | WINGS)</logic>
+  </transition>
+  <transition name="Fungus3_39[right1]">
+    <sceneName>Fungus3_39</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Queens_Gardens</areaName>
+    <logic>QUEENSGARDENS + (DASH | WINGS)</logic>
+    <deadEnd>true</deadEnd>
+  </transition>
+  <transition name="Deepnest_43[bot1]">
+    <sceneName>Deepnest_43</sceneName>
+    <doorName>bot1</doorName>
+    <areaName>Queens_Gardens</areaName>
+    <logic>QUEENSGARDENS + (CLAW | WINGS)</logic>
+  </transition>
+  <transition name="Fungus3_22[right1]">
+    <sceneName>Fungus3_22</sceneName>
+    <doorName>right1</doorName>
+    <areaName>Queens_Gardens</areaName>
+    <logic>QUEENSGARDENS + DASH + (CLAW | WINGS)</logic>
+  </transition>
+  <!--Mounds-->
+  <transition name="Crossroads_ShamanTemple[left1]">
+    <sceneName>Crossroads_ShamanTemple</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Ancestral_Mound</areaName>
+    <deadEnd>true</deadEnd>
+    <isolated>true</isolated>
+  </transition>
+  <transition name="Room_Fungus_Shaman[left1]">
+    <sceneName>Room_Fungus_Shaman</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Overgrown_Mound</areaName>
+    <deadEnd>true</deadEnd>
+    <isolated>true</isolated>
+  </transition>
+  <transition name="Mines_35[left1]">
+    <sceneName>Mines_35</sceneName>
+    <doorName>left1</doorName>
+    <areaName>Crystallized_Mound</areaName>
+    <deadEnd>true</deadEnd>
+    <isolated>true</isolated>
+  </transition>
+<!--ITEMS-->
+  <item name="Lurien">
+    <boolName>AreaRando.Lurien</boolName>
+    <sceneName>Ruins2_Watcher_Room</sceneName>
+    <newShiny>true</newShiny>
+    <x>58</x>
+    <y>136</y>
+    <logic>RIGHTCITY + CLAW + DREAMNAIL</logic>
+    <type>Big</type>
+    <pool>Dreamer</pool>
+    <bigSpriteKey>Prompts.Lurien</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO1</takeKey>
+    <nameKey>RANDOMIZER_NAME_LURIEN</nameKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_EMPTY</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <shopDescKey>RANDOMIZER_DESC_LURIEN</shopDescKey>
+    <shopSpriteKey>Prompts.Lurien</shopSpriteKey>
+    <areaName>City_of_Tears</areaName>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+  </item>
+  <item name="Monomon">
+    <boolName>AreaRando.Monomon</boolName>
+    <sceneName>Fungus3_archive_02</sceneName>
+    <newShiny>true</newShiny>
+    <x>54</x>
+    <y>89</y>
+    <logic>RIGHTFOGCANYON + CLAW + DREAMNAIL + (ACID | SUPERDASH)</logic>
+    <type>Big</type>
+    <pool>Dreamer</pool>
+    <bigSpriteKey>Prompts.Monomon</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO1</takeKey>
+    <nameKey>RANDOMIZER_NAME_MONOMON</nameKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_EMPTY</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <shopDescKey>RANDOMIZER_DESC_MONOMON</shopDescKey>
+    <shopSpriteKey>Prompts.Monomon</shopSpriteKey>
+    <areaName>Fog_Canyon</areaName>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+  </item>
+  <item name="Herrah">
+    <boolName>AreaRando.Herrah</boolName>
+    <sceneName>Deepnest_Spider_Town</sceneName>
+    <newShiny>true</newShiny>
+    <x>68</x>
+    <y>154</y>
+    <logic>DEEPNEST + CLAW + WINGS + DREAMNAIL</logic>
+    <type>Big</type>
+    <pool>Dreamer</pool>
+    <bigSpriteKey>Prompts.Herrah</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO1</takeKey>
+    <nameKey>RANDOMIZER_NAME_HERRAH</nameKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_EMPTY</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <shopDescKey>RANDOMIZER_DESC_HERRAH</shopDescKey>
+    <shopSpriteKey>Prompts.Herrah</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+  </item>
+  <item name="World_Sense">
+    <boolName>unlockedCompletionRate</boolName>
+    <sceneName>Room_Final_Boss_Atrium</sceneName>
+    <newShiny>true</newShiny>
+    <x>202</x>
+    <y>7</y>
+    <logic>CROSSROADS + Lurien + Monomon + Herrah</logic>
+    <type>Big</type>
+    <pool>Dreamer</pool>
+    <bigSpriteKey>Prompts.WorldSense</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO1</takeKey>
+    <nameKey>RANDOMIZER_NAME_WORLD_SENSE</nameKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_EMPTY</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <shopDescKey>RANDOMIZER_DESC_WORLD_SENSE</shopDescKey>
+    <shopSpriteKey>ShopIcons.WorldSense</shopSpriteKey>
+    <areaName>Forgotten_Crossroads</areaName>
+    <longItemTier>1</longItemTier>
+  </item>
+  <item name="Mothwing_Cloak">
+        <boolName>hasDash</boolName>
+        <sceneName>Fungus1_04</sceneName>
+        <objectName>Shiny Item</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>GREENPATH</logic>
+        <type>Big</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Dash</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO1</takeKey>
+        <nameKey>INV_NAME_DASH</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_DASH_1</descOneKey>
+        <descTwoKey>GET_DASH_2</descTwoKey>
+        <shopDescKey>INV_DESC_DASH</shopDescKey>
+        <shopSpriteKey>ShopIcons.Dash</shopSpriteKey>
+        <areaName>Greenpath</areaName>
+        <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+    <areaCandidate>true</areaCandidate>
+        <isGoodItem>true</isGoodItem>
+    </item>
+    <item name="Mantis_Claw">
+        <boolName>hasWalljump</boolName>
+        <sceneName>Fungus2_14</sceneName>
+        <objectName>Shiny Item Stand</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>FUNGALWASTES</logic>
+        <type>Big</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Walljump</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO1</takeKey>
+        <nameKey>INV_NAME_WALLJUMP</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_WALLJUMP_1</descOneKey>
+        <descTwoKey>GET_WALLJUMP_2</descTwoKey>
+        <shopDescKey>INV_DESC_WALLJUMP</shopDescKey>
+        <shopSpriteKey>ShopIcons.Walljump</shopSpriteKey>
+        <areaName>Fungal_Wastes</areaName>
+        <progression>true</progression>
+      <itemCandidate>true</itemCandidate>
+      <areaCandidate>true</areaCandidate>
+        <isGoodItem>true</isGoodItem>
+    </item>
+    <item name="Crystal_Heart">
+        <boolName>hasSuperDash</boolName>
+        <sceneName>Mines_31</sceneName>
+        <objectName>Super Dash Get</objectName>
+        <replace>true</replace>
+        <logic>CRYSTALPEAK + ((CLAW + (DASH | SUPERDASH | WINGS | FIREBALL | SCREAM)) | (WINGS + (DASH | FIREBALL | SCREAM)))</logic>
+        <type>Big</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Superdash</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO2</takeKey>
+        <nameKey>INV_NAME_SUPERDASH</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_SUPERDASH_1</descOneKey>
+        <descTwoKey>GET_SUPERDASH_2</descTwoKey>
+        <shopDescKey>INV_DESC_SUPERDASH</shopDescKey>
+        <shopSpriteKey>ShopIcons.Superdash</shopSpriteKey>
+        <areaName>Crystal_Peak</areaName>
+        <progression>true</progression>
+      <itemCandidate>true</itemCandidate>
+      <areaCandidate>true</areaCandidate>
+    </item>
+    <item name="Monarch_Wings">
+        <boolName>hasDoubleJump</boolName>
+        <sceneName>Abyss_21</sceneName>
+        <objectName>Shiny Item DJ</objectName>
+        <replace>true</replace>
+        <logic>ANCIENTBASIN + (WINGS | (CLAW + SUPERDASH))</logic>
+        <type>Big</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Wings</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO5</takeKey>
+        <nameKey>INV_NAME_DOUBLEJUMP</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_DOUBLEJUMP_1</descOneKey>
+        <descTwoKey>GET_DOUBLEJUMP_2</descTwoKey>
+        <shopDescKey>INV_DESC_DOUBLEJUMP</shopDescKey>
+        <shopSpriteKey>ShopIcons.Wings</shopSpriteKey>
+        <areaName>Ancient_Basin</areaName>
+        <progression>true</progression>
+      <itemCandidate>true</itemCandidate>
+      <areaCandidate>true</areaCandidate>
+        <isGoodItem>true</isGoodItem>
+    </item>
+    <item name="Shade_Cloak">
+        <boolName>hasShadowDash</boolName>
+        <sceneName>Abyss_10</sceneName>
+        <objectName>Dish Plat</objectName>
+        <replace>true</replace>
+        <logic>ABYSS + (CLAW | WINGS)</logic>
+        <type>Big</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Shadowdash</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO7</takeKey>
+        <nameKey>INV_NAME_SHADOWDASH</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_SHADOWDASH_1</descOneKey>
+        <descTwoKey>GET_SHADOWDASH_2</descTwoKey>
+        <shopDescKey>INV_DESC_SHADOWDASH</shopDescKey>
+        <shopSpriteKey>ShopIcons.Shadowdash</shopSpriteKey>
+        <areaName>Abyss</areaName>
+        <progression>true</progression>
+      <itemCandidate>true</itemCandidate>
+      <areaCandidate>true</areaCandidate>
+        <isGoodItem>true</isGoodItem>
+    </item>
+    <item name="Isma's_Tear">
+        <boolName>hasAcidArmour</boolName>
+        <sceneName>Waterways_13</sceneName>
+        <objectName>Shiny Item Acid</objectName>
+        <replace>true</replace>
+        <logic>RIGHTWATERWAYS + (ACID | (CLAW + DASH + SUPERDASH) | (CLAW + LEFTWATERWAYS))</logic>
+        <type>Big</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Isma</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO8</takeKey>
+        <nameKey>INV_NAME_ACIDARMOUR</nameKey>
+        <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+        <descOneKey>GET_ACIDARMOUR_1</descOneKey>
+        <descTwoKey>GET_ACIDARMOUR_2</descTwoKey>
+        <shopDescKey>INV_DESC_ACIDARMOUR</shopDescKey>
+        <shopSpriteKey>ShopIcons.Isma</shopSpriteKey>
+        <areaName>Royal_Waterways</areaName>
+        <progression>true</progression>
+      <itemCandidate>true</itemCandidate>
+      <areaCandidate>true</areaCandidate>
+    </item>
+    <item name="Dream_Nail">
+        <boolName>hasDreamNail</boolName>
+        <sceneName>Dream_Nailcollection</sceneName>
+        <objectName>Moth NPC</objectName>
+        <replace>true</replace>
+        <logic>UPPERRESTINGGROUNDS</logic>
+        <type>Big</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Dreamnail</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO5</takeKey>
+        <nameKey>INV_NAME_DREAMNAIL_A</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_DREAMNAIL_1</descOneKey>
+        <descTwoKey>GET_DREAMNAIL_2</descTwoKey>
+        <shopDescKey>INV_DESC_DREAMNAIL_A</shopDescKey>
+        <shopSpriteKey>ShopIcons.Dreamnail</shopSpriteKey>
+        <areaName>Resting_Grounds</areaName>
+        <progression>true</progression>
+      <itemCandidate>true</itemCandidate>
+        <isGoodItem>true</isGoodItem>
+    </item>
+    <item name="Dream_Gate">
+        <boolName>hasDreamGate</boolName>
+        <sceneName>RestingGrounds_07</sceneName>
+        <newShiny>true</newShiny>
+        <x>27</x>
+        <y>10</y>
+        <logic>UPPERRESTINGGROUNDS + DREAMNAIL + CLAW + CROSSROADS + LEFTCITY + HOWLINGCLIFFS + FUNGALWASTES</logic>
+        <type>Big</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Dream Gate</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO5</takeKey>
+        <nameKey>INV_NAME_DREAMGATE</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_DREAMGATE_1</descOneKey>
+        <descTwoKey>GET_DREAMGATE_2</descTwoKey>
+        <shopDescKey>INV_DESC_DREAMGATE</shopDescKey>
+        <shopSpriteKey>ShopIcons.Dreamnail</shopSpriteKey>
+        <areaName>Resting_Grounds</areaName>
+        <progression>true</progression>
+        <cost>900</cost>
+        <costType>1</costType>
+        <isGoodItem>true</isGoodItem>
+    </item>
+    <!--TODO: Awoken Dream Nail-->
+    <!--Maybe not? People don't seem to like the idea of 3 dream nail pickups-->
+    <item name="Vengeful_Spirit">
+        <boolName>hasVengefulSpirit</boolName>
+        <sceneName>Crossroads_ShamanTemple</sceneName>
+        <objectName>Shaman Meeting</objectName>
+        <replace>true</replace>
+        <logic>Crossroads_ShamanTemple[left1]</logic>
+        <type>Spell</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Fireball1</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO3</takeKey>
+        <nameKey>INV_NAME_SPELL_FIREBALL1</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_FIREBALL_1</descOneKey>
+        <descTwoKey>GET_FIREBALL_2</descTwoKey>
+        <shopDescKey>INV_DESC_SPELL_FIREBALL1</shopDescKey>
+        <shopSpriteKey>ShopIcons.Fireball1</shopSpriteKey>
+        <areaName>Ancestral_Mound</areaName>
+        <progression>true</progression>
+      <itemCandidate>true</itemCandidate>
+    </item>
+    <item name="Shade_Soul">
+        <boolName>hasShadeSoul</boolName>
+        <sceneName>Ruins1_31b</sceneName>
+        <objectName>Ruins Shaman</objectName>
+        <replace>true</replace>
+        <logic>LEFTCITY + (CLAW | WINGS) + ELEGANT</logic>
+        <type>Spell</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Fireball2</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO3</takeKey>
+        <nameKey>INV_NAME_SPELL_FIREBALL2</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_FIREBALL2_1</descOneKey>
+        <descTwoKey>GET_FIREBALL2_2</descTwoKey>
+        <shopDescKey>INV_DESC_SPELL_FIREBALL2</shopDescKey>
+        <shopSpriteKey>ShopIcons.Fireball2</shopSpriteKey>
+        <areaName>City_of_Tears</areaName>
+        <progression>true</progression>
+    </item>
+    <item name="Desolate_Dive">
+        <boolName>hasDesolateDive</boolName>
+        <sceneName>Ruins1_24</sceneName>
+        <objectName>Quake Item</objectName>
+        <replace>true</replace>
+        <logic>LEFTCITY + (CLAW | WINGS)</logic>
+        <type>Spell</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Quake1</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO3</takeKey>
+        <nameKey>INV_NAME_SPELL_QUAKE1</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_QUAKE_1</descOneKey>
+        <descTwoKey>GET_QUAKE_2</descTwoKey>
+        <shopDescKey>INV_DESC_SPELL_QUAKE1</shopDescKey>
+        <shopSpriteKey>ShopIcons.Quake1</shopSpriteKey>
+        <areaName>City_of_Tears</areaName>
+        <progression>true</progression>
+      <itemCandidate>true</itemCandidate>
+      <areaCandidate>true</areaCandidate>
+    </item>
+    <item name="Descending_Dark">
+        <boolName>hasDescendingDark</boolName>
+        <sceneName>Mines_35</sceneName>
+        <objectName>Crystal Shaman</objectName>
+        <replace>true</replace>
+        <logic>Mines_35[left1] + QUAKE + (CLAW | WINGS)</logic>
+        <type>Spell</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Quake2</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO3</takeKey>
+        <nameKey>INV_NAME_SPELL_QUAKE2</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_QUAKE2_1</descOneKey>
+        <descTwoKey>GET_QUAKE2_2</descTwoKey>
+        <shopDescKey>INV_DESC_SPELL_QUAKE2</shopDescKey>
+        <shopSpriteKey>ShopIcons.Quake2</shopSpriteKey>
+        <areaName>Crystal_Peak</areaName>
+        <progression>true</progression>
+    </item>
+    <item name="Howling_Wraiths">
+        <boolName>hasHowlingWraiths</boolName>
+        <sceneName>Room_Fungus_Shaman</sceneName>
+        <objectName>Scream Item</objectName>
+        <replace>true</replace>
+        <logic>Room_Fungus_Shaman[left1]</logic>
+        <type>Spell</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Scream1</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO3</takeKey>
+        <nameKey>INV_NAME_SPELL_SCREAM1</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_SCREAM_1</descOneKey>
+        <descTwoKey>GET_SCREAM_2</descTwoKey>
+        <shopDescKey>INV_DESC_SPELL_SCREAM1</shopDescKey>
+        <shopSpriteKey>ShopIcons.Scream1</shopSpriteKey>
+        <areaName>Fog_Canyon</areaName>
+        <progression>true</progression>
+      <itemCandidate>true</itemCandidate>
+    </item>
+    <item name="Abyss_Shriek">
+        <boolName>hasAbyssShriek</boolName>
+        <sceneName>Abyss_12</sceneName>
+        <objectName>Scream 2 Get</objectName>
+        <replace>true</replace>
+        <logic>ABYSS + SCREAM</logic>
+        <type>Spell</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.Scream2</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO3</takeKey>
+        <nameKey>INV_NAME_SPELL_SCREAM2</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_SCREAM2_1</descOneKey>
+        <descTwoKey>GET_SCREAM2_2</descTwoKey>
+        <shopDescKey>INV_DESC_SPELL_SCREAM2</shopDescKey>
+        <shopSpriteKey>ShopIcons.Scream2</shopSpriteKey>
+        <areaName>Abyss</areaName>
+        <progression>true</progression>
+    </item>
+    <item name="Cyclone_Slash">
+        <boolName>hasCyclone</boolName>
+        <sceneName>Room_nailmaster</sceneName>
+        <objectName>NM Mato NPC</objectName>
+        <replace>true</replace>
+        <logic>HOWLINGCLIFFS</logic>
+        <type>Big</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.CycloneSlash</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO3</takeKey>
+        <nameKey>INV_NAME_ART_CYCLONE</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_CYCLONE_1</descOneKey>
+        <descTwoKey>GET_CYCLONE_2</descTwoKey>
+        <shopDescKey>INV_DESC_ART_CYCLONE</shopDescKey>
+        <shopSpriteKey>ShopIcons.CycloneSlash</shopSpriteKey>
+        <areaName>Howling_Cliffs</areaName>
+        <progression>true</progression>
+      <itemCandidate>true</itemCandidate>
+     </item>
+     <item name="Dash_Slash">
+        <boolName>hasUpwardSlash</boolName>
+        <sceneName>Room_nailmaster_03</sceneName>
+        <objectName>NM Oro NPC</objectName>
+        <replace>true</replace>
+        <logic>CENTRALKINGDOMSEDGE + (CLAW | WINGS | (ACID + DASH))</logic>
+        <type>Big</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.DashSlash</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO3</takeKey>
+        <nameKey>INV_NAME_ART_UPPER</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_DSLASH_1</descOneKey>
+        <descTwoKey>GET_DSLASH_2</descTwoKey>
+        <shopDescKey>INV_DESC_ART_UPPER</shopDescKey>
+        <shopSpriteKey>ShopIcons.DashSlash</shopSpriteKey>
+        <areaName>Kingdoms_Edge</areaName>
+        <progression>true</progression>
+       <itemCandidate>true</itemCandidate>
+        <cost>800</cost>
+    </item>
+    <item name="Great_Slash">
+        <boolName>hasDashSlash</boolName>
+        <sceneName>Room_nailmaster_02</sceneName>
+        <objectName>NM Sheo NPC</objectName>
+        <replace>true</replace>
+        <logic>GREENPATH + CLAW + ((DASH + (SUPERDASH | WINGS)) | (WINGS + SUPERDASH))</logic>
+        <type>Big</type>
+        <pool>Skill</pool>
+        <bigSpriteKey>Prompts.GreatSlash</bigSpriteKey>
+        <takeKey>GET_ITEM_INTRO3</takeKey>
+        <nameKey>INV_NAME_ART_DASH</nameKey>
+        <buttonKey>RANDOMIZER_BUTTON_DESC</buttonKey>
+        <descOneKey>GET_GSLASH_1</descOneKey>
+        <descTwoKey>GET_GSLASH_2</descTwoKey>
+        <shopDescKey>INV_DESC_ART_DASH</shopDescKey>
+        <shopSpriteKey>ShopIcons.GreatSlash</shopSpriteKey>
+        <areaName>Greenpath</areaName>
+        <progression>true</progression>
+      <itemCandidate>true</itemCandidate>
+    </item>
+    <item name="Gathering_Swarm">
+        <boolName>gotCharm_1</boolName>
+        <sceneName>Room_shop</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_1</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_1</shopDescKey>
+        <shopSpriteKey>Charms.1</shopSpriteKey>
+        <areaName>Dirtmouth</areaName>
+        <notchCost>charmCost_1</notchCost>
+    </item>
+    <item name="Wayward_Compass">
+        <boolName>gotCharm_2</boolName>
+        <sceneName>Room_mapper</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_2</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_2</shopDescKey>
+        <shopSpriteKey>Charms.2</shopSpriteKey>
+        <areaName>Dirtmouth</areaName>
+        <notchCost>charmCost_2</notchCost>
+    </item>
+    <item name="Grubsong">
+        <boolName>gotCharm_3</boolName>
+        <sceneName>Crossroads_38</sceneName>
+        <newShiny>true</newShiny>
+        <x>48</x>
+        <y>4</y>
+        <logic>CROSSROADS + GREENPATH + RIGHTCITY + CLAW</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_3</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_3</shopDescKey>
+        <shopSpriteKey>Charms.3</shopSpriteKey>
+        <areaName>Forgotten_Crossroads</areaName>
+        <notchCost>charmCost_3</notchCost>
+        <cost>10</cost>
+        <costType>3</costType>
+    </item>
+    <item name="Stalwart_Shell">
+        <boolName>gotCharm_4</boolName>
+        <sceneName>Room_shop</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_4</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_4</shopDescKey>
+        <shopSpriteKey>Charms.4</shopSpriteKey>
+        <areaName>Dirtmouth</areaName>
+        <notchCost>charmCost_4</notchCost>
+    </item>
+    <item name="Baldur_Shell">
+        <boolName>gotCharm_5</boolName>
+        <sceneName>Fungus1_28</sceneName>
+        <objectName>Shiny Item</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>(HOWLINGCLIFFS | Fungus1_28[left2]) + BALDURS + (CLAW | WINGS | DASH | SUPERDASH)</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_5</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_5</shopDescKey>
+        <shopSpriteKey>Charms.5</shopSpriteKey>
+        <areaName>Howling_Cliffs</areaName>
+        <notchCost>charmCost_5</notchCost>
+    </item>
+    <item name="Fury_of_the_Fallen">
+        <boolName>gotCharm_6</boolName>
+        <sceneName>Tutorial_01</sceneName>
+        <objectName>Shiny Item (1)</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_6</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_6</shopDescKey>
+        <shopSpriteKey>Charms.6</shopSpriteKey>
+        <areaName>Kings_Pass</areaName>
+        <notchCost>charmCost_6</notchCost>
+        <inChest>true</inChest>
+        <chestName>Chest</chestName>
+        <chestFsmName>Chest Control</chestFsmName>
+    </item>
+    <item name="Quick_Focus">
+        <boolName>gotCharm_7</boolName>
+        <sceneName>Room_Charm_Shop</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_7</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_7</shopDescKey>
+        <shopSpriteKey>Charms.7</shopSpriteKey>
+        <areaName>Forgotten_Crossroads</areaName>
+        <notchCost>charmCost_7</notchCost>
+    </item>
+    <item name="Lifeblood_Heart">
+        <boolName>gotCharm_8</boolName>
+        <sceneName>Room_Charm_Shop</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_8</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_8</shopDescKey>
+        <shopSpriteKey>Charms.8</shopSpriteKey>
+        <areaName>Forgotten_Crossroads</areaName>
+        <notchCost>charmCost_8</notchCost>
+    </item>
+    <item name="Lifeblood_Core">
+        <boolName>gotCharm_9</boolName>
+        <sceneName>Abyss_08</sceneName>
+        <objectName>Shiny Item</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>ABYSS + CROSSROADS + GREENPATH + LEFTFOGCANYON</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_9</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_9</shopDescKey>
+        <shopSpriteKey>Charms.9</shopSpriteKey>
+        <areaName>Abyss</areaName>
+        <notchCost>charmCost_9</notchCost>
+    </item>
+    <item name="Defender's_Crest">
+        <boolName>gotCharm_10</boolName>
+        <sceneName>Waterways_05</sceneName>
+        <objectName>Shiny Item</objectName>
+        <altObjectName>Shiny Item R</altObjectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>LEFTWATERWAYS + (CLAW | WINGS)</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_10</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_10</shopDescKey>
+        <shopSpriteKey>Charms.10</shopSpriteKey>
+        <areaName>Royal_Waterways</areaName>
+        <notchCost>charmCost_10</notchCost>
+    </item>
+    <item name="Flukenest">
+        <boolName>gotCharm_11</boolName>
+        <sceneName>Waterways_12</sceneName>
+        <objectName>Shiny Item</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>LEFTWATERWAYS + QUAKE</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_11</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_11</shopDescKey>
+        <shopSpriteKey>Charms.11</shopSpriteKey>
+        <areaName>Royal_Waterways</areaName>
+        <notchCost>charmCost_11</notchCost>
+    </item>
+    <item name="Thorns_of_Agony">
+        <boolName>gotCharm_12</boolName>
+        <sceneName>Fungus1_14</sceneName>
+        <objectName>Shiny Item</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>GREENPATH + (DASH | (CLAW + SUPERDASH))</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_12</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_12</shopDescKey>
+        <shopSpriteKey>Charms.12</shopSpriteKey>
+        <areaName>Greenpath</areaName>
+        <notchCost>charmCost_12</notchCost>
+    </item>
+    <item name="Mark_of_Pride">
+        <boolName>gotCharm_13</boolName>
+        <sceneName>Fungus2_31</sceneName>
+        <objectName>Shiny Item Charm</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>FUNGALWASTES + (CLAW | WINGS)</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_13</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_13</shopDescKey>
+        <shopSpriteKey>Charms.13</shopSpriteKey>
+        <notchCost>charmCost_13</notchCost>
+        <areaName>Fungal_Wastes</areaName>
+        <progression>true</progression>
+        <inChest>true</inChest>
+        <chestName>Mantis Chest</chestName>
+        <chestFsmName>Chest Control</chestFsmName>
+    </item>
+    <item name="Steady_Body">
+        <boolName>gotCharm_14</boolName>
+        <sceneName>Room_Charm_Shop</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_14</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_14</shopDescKey>
+        <shopSpriteKey>Charms.14</shopSpriteKey>
+        <areaName>Forgotten_Crossroads</areaName>
+        <notchCost>charmCost_14</notchCost>
+    </item>
+    <item name="Heavy_Blow">
+        <boolName>gotCharm_15</boolName>
+        <sceneName>Room_shop</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_15</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_15</shopDescKey>
+        <shopSpriteKey>Charms.15</shopSpriteKey>
+        <areaName>Dirtmouth</areaName>
+        <notchCost>charmCost_15</notchCost>
+    </item>
+    <item name="Sharp_Shadow">
+        <boolName>gotCharm_16</boolName>
+        <sceneName>Deepnest_44</sceneName>
+        <objectName>Shiny Item Stand</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>DEEPNEST + SHADOWDASH</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_16</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_16</shopDescKey>
+        <shopSpriteKey>Charms.16</shopSpriteKey>
+        <areaName>Deepnest</areaName>
+        <notchCost>charmCost_16</notchCost>
+        <progression>true</progression>
+    </item>
+    <item name="Spore_Shroom">
+        <boolName>gotCharm_17</boolName>
+        <sceneName>Fungus2_20</sceneName>
+        <objectName>Shiny Item Stand</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>FUNGALWASTES + ((CLAW + (DASH | WINGS | SUPERDASH | ACID)) | (WINGS + (ACID | DASH)))</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_17</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_17</shopDescKey>
+        <shopSpriteKey>Charms.17</shopSpriteKey>
+        <notchCost>charmCost_17</notchCost>
+        <areaName>Fungal_Wastes</areaName>
+        <progression>true</progression>
+    </item>
+    <item name="Longnail">
+        <boolName>gotCharm_18</boolName>
+        <sceneName>Room_Charm_Shop</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_18</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_18</shopDescKey>
+        <shopSpriteKey>Charms.18</shopSpriteKey>
+        <areaName>Forgotten_Crossroads</areaName>
+        <notchCost>charmCost_18</notchCost>
+        <progression>true</progression>
+    </item>
+    <item name="Shaman_Stone">
+        <boolName>gotCharm_19</boolName>
+        <sceneName>Room_Charm_Shop</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_19</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_19</shopDescKey>
+        <shopSpriteKey>Charms.19</shopSpriteKey>
+        <areaName>Forgotten_Crossroads</areaName>
+        <notchCost>charmCost_19</notchCost>
+    </item>
+    <item name="Soul_Catcher">
+        <boolName>gotCharm_20</boolName>
+        <sceneName>Crossroads_ShamanTemple</sceneName>
+        <objectName>Shiny Item</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>Crossroads_ShamanTemple[left1] + (CLAW | BALDURS | WINGS)</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_20</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_20</shopDescKey>
+        <shopSpriteKey>Charms.20</shopSpriteKey>
+        <areaName>Ancestral_Mound</areaName>
+        <notchCost>charmCost_20</notchCost>
+    </item>
+    <item name="Soul_Eater">
+        <boolName>gotCharm_21</boolName>
+        <sceneName>RestingGrounds_10</sceneName>
+        <objectName>Shiny Item Stand</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>UPPERRESTINGGROUNDS + QUAKE + (CLAW | WINGS)</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_21</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_21</shopDescKey>
+        <shopSpriteKey>Charms.21</shopSpriteKey>
+        <areaName>Resting_Grounds</areaName>
+        <notchCost>charmCost_21</notchCost>
+    </item>
+    <item name="Glowing_Womb">
+        <boolName>gotCharm_22</boolName>
+        <sceneName>Crossroads_22</sceneName>
+        <objectName>Shiny Item</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>CROSSROADS + ((SUPERDASH | ((FIREBALL | SCREAM | DASHMASTER) + DASH)) + (CLAW | WINGS | INFECTED))</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_22</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_22</shopDescKey>
+        <shopSpriteKey>Charms.22</shopSpriteKey>
+        <notchCost>charmCost_22</notchCost>
+        <areaName>Forgotten_Crossroads</areaName>
+        <progression>true</progression>
+    </item>
+    <item name="Fragile_Heart">
+        <boolName>gotCharm_23</boolName>
+        <sceneName>Fungus2_26</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_23_G</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_23</shopDescKey>
+        <shopSpriteKey>Charms.23_G</shopSpriteKey>
+        <areaName>Fungal_Wastes</areaName>
+        <notchCost>charmCost_23</notchCost>
+    </item>
+    <item name="Fragile_Greed">
+        <boolName>gotCharm_24</boolName>
+        <sceneName>Fungus2_26</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_24_G</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_24</shopDescKey>
+        <shopSpriteKey>Charms.24_G</shopSpriteKey>
+        <areaName>Fungal_Wastes</areaName>
+        <notchCost>charmCost_24</notchCost>
+    </item>
+    <item name="Fragile_Strength">
+        <boolName>gotCharm_25</boolName>
+        <sceneName>Fungus2_26</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_25_G</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_25</shopDescKey>
+        <shopSpriteKey>Charms.25_G</shopSpriteKey>
+        <areaName>Fungal_Wastes</areaName>
+        <notchCost>charmCost_25</notchCost>
+    </item>
+    <item name="Nailmaster's_Glory">
+        <boolName>gotCharm_26</boolName>
+        <sceneName>Room_Sly_Storeroom</sceneName>
+        <objectName>Sly Basement NPC</objectName>
+        <replace>true</replace>
+        <logic>DIRTMOUTH + Cyclone_Slash + Dash_Slash + Great_Slash</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_26</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_26</shopDescKey>
+        <shopSpriteKey>Charms.26</shopSpriteKey>
+        <areaName>Dirtmouth</areaName>
+        <notchCost>charmCost_26</notchCost>
+    </item>
+    <item name="Joni's_Blessing">
+        <boolName>gotCharm_27</boolName>
+        <sceneName>Cliffs_05</sceneName>
+        <objectName>Shiny Item Stand</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>HOWLINGCLIFFS</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_27</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_27</shopDescKey>
+        <shopSpriteKey>Charms.27</shopSpriteKey>
+        <areaName>Howling_Cliffs</areaName>
+        <notchCost>charmCost_27</notchCost>
+    </item>
+    <item name="Shape_of_Unn">
+        <boolName>gotCharm_28</boolName>
+        <sceneName>Fungus1_Slug</sceneName>
+        <objectName>Shiny Item</objectName>
+        <altObjectName>Shiny Item Return</altObjectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>GREENPATH + ACID + (CLAW | WINGS)</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_28</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_28</shopDescKey>
+        <shopSpriteKey>Charms.28</shopSpriteKey>
+        <areaName>Greenpath</areaName>
+        <notchCost>charmCost_28</notchCost>
+    </item>
+    <item name="Hiveblood">
+        <boolName>gotCharm_29</boolName>
+        <sceneName>Hive_05</sceneName>
+        <objectName>Shiny Item Stand</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>HIVE + (CLAW | WINGS)</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_29</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_29</shopDescKey>
+        <shopSpriteKey>Charms.29</shopSpriteKey>
+        <areaName>Hive</areaName>
+        <notchCost>charmCost_29</notchCost>
+    </item>
+    <item name="Dream_Wielder">
+        <boolName>gotCharm_30</boolName>
+        <sceneName>RestingGrounds_07</sceneName>
+        <newShiny>true</newShiny>
+        <x>33</x>
+        <y>10</y>
+        <logic>UPPERRESTINGGROUNDS + DREAMNAIL + (CLAW | WINGS) + LEFTCITY + FUNGALWASTES</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_30</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_30</shopDescKey>
+        <shopSpriteKey>Charms.30</shopSpriteKey>
+        <areaName>Resting_Grounds</areaName>
+        <notchCost>charmCost_30</notchCost>
+        <cost>500</cost>
+        <costType>1</costType>
+    </item>
+    <item name="Dashmaster">
+        <boolName>gotCharm_31</boolName>
+        <sceneName>Fungus2_23</sceneName>
+        <objectName>Shiny Item Stand</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>FUNGALWASTES</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_31</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_31</shopDescKey>
+        <shopSpriteKey>Charms.31</shopSpriteKey>
+        <areaName>Fungal_Wastes</areaName>
+        <notchCost>charmCost_31</notchCost>
+        <progression>true</progression>
+    </item>
+    <item name="Quick_Slash">
+        <boolName>gotCharm_32</boolName>
+        <sceneName>Deepnest_East_14b</sceneName>
+        <objectName>Shiny Item</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>CENTRALKINGDOMSEDGE + (CLAW | WINGS) + QUAKE</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_32</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_32</shopDescKey>
+        <shopSpriteKey>Charms.32</shopSpriteKey>
+        <areaName>Kingdoms_Edge</areaName>
+        <notchCost>charmCost_32</notchCost>
+    </item>
+    <item name="Spell_Twister">
+        <boolName>gotCharm_33</boolName>
+        <sceneName>Ruins1_30</sceneName>
+        <objectName>Shiny Item Stand</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>LEFTCITY + (CLAW | WINGS)</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_33</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_33</shopDescKey>
+        <shopSpriteKey>Charms.33</shopSpriteKey>
+        <areaName>City_of_Tears</areaName>
+        <notchCost>charmCost_33</notchCost>
+    </item>
+    <item name="Deep_Focus">
+        <boolName>gotCharm_34</boolName>
+        <sceneName>Mines_36</sceneName>
+        <objectName>Shiny Item Stand</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>CRYSTALPEAK + ((CLAW + SUPERDASH) | (WINGS + DASH) | (WINGS + SUPERDASH + (FIREBALL | SCREAM)))</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_34</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_34</shopDescKey>
+        <shopSpriteKey>Charms.34</shopSpriteKey>
+        <areaName>Crystal_Peak</areaName>
+        <notchCost>charmCost_34</notchCost>
+    </item>
+    <item name="Grubberfly's_Elegy">
+        <boolName>gotCharm_35</boolName>
+        <sceneName>Crossroads_38</sceneName>
+      <newShiny>true</newShiny>
+      <x>18</x>
+      <y>4</y>
+        <logic>CROSSROADS + LOWERKINGDOMSEDGE + CLAW + WINGS + SHADOWDASH + SUPERDASH + ACID + LOVE + TRAM + SIMPLE1</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_35</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_35</shopDescKey>
+        <shopSpriteKey>Charms.35</shopSpriteKey>
+        <areaName>Forgotten_Crossroads</areaName>
+        <notchCost>charmCost_35</notchCost>
+        <progression>true</progression>
+        <longItemTier>4</longItemTier>
+      <cost>46</cost>
+      <costType>3</costType>
+    </item>
+  <item name="Queen_Fragment">
+    <boolName>AreaRando.QueenFragment</boolName>
+    <sceneName>Room_Queen</sceneName>
+    <objectName>Shiny Item RoyalCharm</objectName>
+    <fsmName>Shiny Control</fsmName>
+    <replace>true</replace>
+    <logic>QUEENSGARDENS + SHADOWDASH + (CLAW | WINGS)</logic>
+    <type>Big</type>
+    <pool>Charm</pool>
+    <bigSpriteKey>Prompts.36_L</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO8</takeKey>
+    <nameKey>CHARM_NAME_36_A</nameKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_EMPTY</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <shopDescKey>RANDOMIZER_CHARM_DESC_36_L</shopDescKey>
+    <shopSpriteKey>Charms.36_L</shopSpriteKey>
+    <areaName>Queens_Gardens</areaName>
+    <notchCost>charmCost_36</notchCost>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+    <longItemTier>1</longItemTier>
+  </item>
+  <item name="King_Fragment">
+    <boolName>AreaRando.KingFragment</boolName>
+    <sceneName>White_Palace_09</sceneName>
+    <objectName>Shiny Item RoyalCharm</objectName>
+    <fsmName>Shiny Control</fsmName>
+    <replace>true</replace>
+    <logic>ANCIENTBASIN + UPPERRESTINGGROUNDS + CLAW + DASH + WINGS + SUPERDASH + DREAMNAIL</logic>
+    <type>Big</type>
+    <pool>Charm</pool>
+    <bigSpriteKey>Prompts.36_R</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO8</takeKey>
+    <nameKey>CHARM_NAME_36_A</nameKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_EMPTY</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <shopDescKey>RANDOMIZER_CHARM_DESC_36_R</shopDescKey>
+    <shopSpriteKey>Charms.36_R</shopSpriteKey>
+    <areaName>Ancient_Basin</areaName>
+    <notchCost>charmCost_36</notchCost>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+    <longItemTier>3</longItemTier>
+  </item>
+  <item name="Void_Heart">
+    <boolName>AreaRando.VoidHeart</boolName>
+    <sceneName>Abyss_15</sceneName>
+    <newShiny>true</newShiny>
+    <x>141</x>
+    <y>11</y>
+    <logic>ABYSS + SHADOWDASH + DREAMNAIL + KINGSOUL</logic>
+    <type>Big</type>
+    <pool>Charm</pool>
+    <bigSpriteKey>Prompts.36_Void</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO8</takeKey>
+    <nameKey>CHARM_NAME_36_C</nameKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_EMPTY</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <shopDescKey>RANDOMIZER_CHARM_DESC_36_Void</shopDescKey>
+    <shopSpriteKey>Charms.36_Void</shopSpriteKey>
+    <areaName>Abyss</areaName>
+    <notchCost>charmCost_36</notchCost>
+    <progression>true</progression>
+  </item>
+    <item name="Sprintmaster">
+        <boolName>gotCharm_37</boolName>
+        <sceneName>Room_shop</sceneName>
+        <objectName>Shop Menu</objectName>
+        <replace>false</replace>
+        <logic></logic>
+        <type>Shop</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_37</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_37</shopDescKey>
+        <shopSpriteKey>Charms.37</shopSpriteKey>
+        <areaName>Dirtmouth</areaName>
+        <notchCost>charmCost_37</notchCost>
+        <progression>true</progression>
+    </item>
+    <item name="Dreamshield">
+        <boolName>gotCharm_38</boolName>
+        <sceneName>RestingGrounds_17</sceneName>
+        <objectName>Shiny Item Stand</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>UPPERRESTINGGROUNDS</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_38</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_38</shopDescKey>
+        <shopSpriteKey>Charms.38</shopSpriteKey>
+        <areaName>Resting_Grounds</areaName>
+        <notchCost>charmCost_38</notchCost>
+    </item>
+    <item name="Weaversong">
+        <boolName>gotCharm_39</boolName>
+        <sceneName>Deepnest_45_v02</sceneName>
+        <objectName>Shiny Item (1)</objectName>
+        <fsmName>Shiny Control</fsmName>
+        <replace>false</replace>
+        <logic>DEEPNEST + (CLAW | WINGS)</logic>
+        <type>Charm</type>
+        <pool>Charm</pool>
+        <nameKey>CHARM_NAME_39</nameKey>
+        <shopDescKey>RANDOMIZER_CHARM_DESC_39</shopDescKey>
+        <shopSpriteKey>Charms.39</shopSpriteKey>
+        <areaName>Deepnest</areaName>
+        <notchCost>charmCost_39</notchCost>
+        <progression>true</progression>
+    </item>
+  <item name="Grimmchild">
+    <boolName>gotCharm_40</boolName>
+    <sceneName>Grimm_Main_Tent</sceneName>
+    <newShiny>true</newShiny>
+    <x>75</x>
+    <y>7</y>
+    <logic>DIRTMOUTH + HOWLINGCLIFFS + DREAMNAIL</logic>
+    <type>Charm</type>
+    <pool>Charm</pool>
+    <nameKey>CHARM_NAME_40</nameKey>
+    <shopDescKey>RANDOMIZER_CHARM_DESC_40</shopDescKey>
+    <shopSpriteKey>Charms.40</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <notchCost>charmCost_40</notchCost>
+  </item>
+    <!--TODO: Relics-->
+    <!--TODO: Keys-->
+  <item name="City_Crest">
+    <boolName>hasCityKey</boolName>
+    <sceneName>Crossroads_10</sceneName>
+    <objectName>Shiny Item</objectName>
+    <fsmName>Shiny Control</fsmName>
+    <replace>false</replace>
+    <logic>CROSSROADS</logic>
+    <type>Trinket</type>
+    <pool>Key</pool>
+    <nameKey>INV_NAME_CITYKEY</nameKey>
+    <shopDescKey>INV_DESC_CITYKEY</shopDescKey>
+    <shopSpriteKey>ShopIcons.CityKey</shopSpriteKey>
+    <areaName>Forgotten_Crossroads</areaName>
+    <trinketNum>9</trinketNum>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+    <areaCandidate>true</areaCandidate>
+  </item>
+  <item name="Lumafly_Lantern">
+    <boolName>hasLantern</boolName>
+    <sceneName>Room_shop</sceneName>
+    <objectName>Shop Menu</objectName>
+    <replace>false</replace>
+    <logic></logic>
+    <type>Shop</type>
+    <pool>Key</pool>
+    <nameKey>INV_NAME_LANTERN</nameKey>
+    <shopDescKey>INV_DESC_LANTERN</shopDescKey>
+    <shopSpriteKey>ShopIcons.Lantern</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <notchCost></notchCost>
+    <trinketNum>20</trinketNum>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+    <areaCandidate>true</areaCandidate>
+  </item>
+  <item name="Tram_Pass">
+    <boolName>hasTramPass</boolName>
+    <sceneName>Deepnest_26b</sceneName>
+    <objectName>Shiny Item</objectName>
+    <fsmName>Shiny Control</fsmName>
+    <replace>false</replace>
+    <logic>DEEPNEST + (CLAW | WINGS)</logic>
+    <type>Trinket</type>
+    <pool>Key</pool>
+    <nameKey>INV_NAME_TRAM_PASS</nameKey>
+    <shopDescKey>INV_DESC_TRAM_PASS</shopDescKey>
+    <shopSpriteKey>ShopIcons.TramPass</shopSpriteKey>
+    <areaName>Deepnest</areaName>
+    <trinketNum>6</trinketNum>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+    <areaCandidate>true</areaCandidate>
+  </item>
+  <item name="Sly_Simple_Key">
+    <boolName>AreaRando.SlySimpleKey</boolName>
+    <sceneName>Room_shop</sceneName>
+    <objectName>Shop Menu</objectName>
+    <replace>false</replace>
+    <logic></logic>
+    <type>Shop</type>
+    <pool>Key</pool>
+    <nameKey>INV_NAME_SIMPLEKEY</nameKey>
+    <shopDescKey>INV_DESC_SIMPLEKEY</shopDescKey>
+    <shopSpriteKey>ShopIcons.SimpleKey</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <notchCost></notchCost>
+    <trinketNum>12</trinketNum>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+    <areaCandidate>true</areaCandidate>
+  </item>
+  <item name="Basin_Simple_Key">
+    <boolName>AreaRando.BasinSimpleKey</boolName>
+    <sceneName>Abyss_20</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <fsmName>Shiny Control</fsmName>
+    <replace>false</replace>
+    <logic>ANCIENTBASIN + (SUPERDASH | WINGS)</logic>
+    <type>Trinket</type>
+    <pool>Key</pool>
+    <nameKey>INV_NAME_SIMPLEKEY</nameKey>
+    <shopDescKey>INV_DESC_SIMPLEKEY</shopDescKey>
+    <shopSpriteKey>ShopIcons.SimpleKey</shopSpriteKey>
+    <areaName>Ancient_Basin</areaName>
+    <trinketNum>12</trinketNum>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+  </item>
+  <item name="City_Simple_Key">
+    <boolName>AreaRando.CitySimpleKey</boolName>
+    <sceneName>Ruins1_17</sceneName>
+    <objectName>Shiny Item</objectName>
+    <fsmName>Shiny Control</fsmName>
+    <replace>false</replace>
+    <logic>LEFTCITY + (CLAW | WINGS)</logic>
+    <type>Trinket</type>
+    <pool>Key</pool>
+    <nameKey>INV_NAME_SIMPLEKEY</nameKey>
+    <shopDescKey>INV_DESC_SIMPLEKEY</shopDescKey>
+    <shopSpriteKey>ShopIcons.SimpleKey</shopSpriteKey>
+    <areaName>City_of_Tears</areaName>
+    <trinketNum>12</trinketNum>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+  </item>
+  <item name="Lurker_Simple_Key">
+    <boolName>AreaRando.LurkerSimpleKey</boolName>
+    <sceneName>GG_Lurker</sceneName>
+    <objectName>Shiny Item Key</objectName>
+    <fsmName>Shiny Control</fsmName>
+    <replace>false</replace>
+    <logic>CENTRALKINGDOMSEDGE + CLAW</logic>
+    <type>Trinket</type>
+    <pool>Key</pool>
+    <nameKey>INV_NAME_SIMPLEKEY</nameKey>
+    <shopDescKey>INV_DESC_SIMPLEKEY</shopDescKey>
+    <shopSpriteKey>ShopIcons.SimpleKey</shopSpriteKey>
+    <areaName>Colosseum</areaName>
+    <trinketNum>12</trinketNum>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+    <longItemTier>1</longItemTier>
+  </item>
+  <item name="Shopkeeper's_Key">
+    <boolName>AreaRando.hasSlykey</boolName>
+    <sceneName>Mines_11</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <fsmName>Shiny Control</fsmName>
+    <replace>false</replace>
+    <logic>CRYSTALPEAK + (CLAW | (WINGS + (DASH | FIREBALL | SCREAM)))</logic>
+    <type>Trinket</type>
+    <pool>Key</pool>
+    <nameKey>INV_NAME_STOREKEY</nameKey>
+    <shopDescKey>INV_DESC_STOREKEY</shopDescKey>
+    <shopSpriteKey>ShopIcons.ShopkeepersKey</shopSpriteKey>
+    <areaName>Crystal_Peak</areaName>
+    <trinketNum>8</trinketNum>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+  </item>
+  <item name="Elegant_Key">
+    <boolName>AreaRando.hasWhiteKey</boolName>
+    <sceneName>Room_shop</sceneName>
+    <objectName>Shop Menu</objectName>
+    <replace>false</replace>
+    <logic></logic>
+    <type>Shop</type>
+    <pool>Key</pool>
+    <nameKey>INV_NAME_WHITEKEY</nameKey>
+    <shopDescKey>INV_DESC_WHITEKEY</shopDescKey>
+    <shopSpriteKey>ShopIcons.ElegantKey</shopSpriteKey>
+    <areaName>Dirtmouth</areaName>
+    <notchCost></notchCost>
+    <trinketNum>21</trinketNum>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+  </item>
+  <item name="Love_Key">
+    <boolName>AreaRando.hasLoveKey</boolName>
+    <sceneName>Fungus3_39</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <fsmName>Shiny Control</fsmName>
+    <replace>false</replace>
+    <logic>QUEENSGARDENS + ((ACID + DASH) | (CLAW + SUPERDASH + DASH))</logic>
+    <type>Trinket</type>
+    <pool>Key</pool>
+    <nameKey>INV_NAME_LOVEKEY</nameKey>
+    <shopDescKey>INV_DESC_LOVEKEY</shopDescKey>
+    <shopSpriteKey>ShopIcons.LoveKey</shopSpriteKey>
+    <areaName>Queens_Gardens</areaName>
+    <trinketNum>10</trinketNum>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+  </item>
+  <item name="King's_Brand">
+    <boolName>hasKingsBrand</boolName>
+    <sceneName>Room_Wyrm</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <fsmName>Shiny Control</fsmName>
+    <replace>false</replace>
+    <logic>CENTRALKINGDOMSEDGE + (CLAW | WINGS)</logic>
+    <type>Big</type>
+    <pool>Key</pool>
+    <bigSpriteKey>Prompts.Kingsbrand</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO1</takeKey>
+    <nameKey>INV_NAME_KINGSBRAND</nameKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>GET_KINGSBRAND_1</descOneKey>
+    <descTwoKey>GET_KINGSBRAND_2</descTwoKey>
+    <shopDescKey>INV_DESC_KINGSBRAND</shopDescKey>
+    <shopSpriteKey>ShopIcons.KingsBrand</shopSpriteKey>
+    <areaName>Kingdoms_Edge</areaName>
+    <progression>true</progression>
+    <itemCandidate>true</itemCandidate>
+  </item>
+  <!--TODO: Make Godtuner require simple key-->
+  <item name="Godtuner">
+    <boolName>hasGodfinder</boolName>
+    <sceneName>GG_Waterways</sceneName>
+    <objectName>Shiny Item Godfinder</objectName>
+    <fsmName>Shiny Control</fsmName>
+    <replace>true</replace>
+    <logic>LEFTWATERWAYS + (CLAW | WINGS) + QUAKE + SIMPLE4</logic>
+    <type>Big</type>
+    <pool>Key</pool>
+    <bigSpriteKey>Prompts.Godfinder</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO1</takeKey>
+    <nameKey>RANDOMIZER_INV_NAME_GODFINDER</nameKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_MEME</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <shopDescKey>RANDOMIZER_INV_DESC_GODFINDER</shopDescKey>
+    <shopSpriteKey>ShopIcons.Godfinder</shopSpriteKey>
+    <areaName>Royal_Waterways</areaName>
+    <longItemTier>1</longItemTier>
+  </item>
+  <item name="Collector's_Map">
+    <boolName>hasPinGrub</boolName>
+    <sceneName>Ruins2_11</sceneName>
+    <objectName>Shiny Item CollectorMap</objectName>
+    <replace>true</replace>
+    <logic>RIGHTCITY + LOVE + (CLAW | WINGS)</logic>
+    <type>Big</type>
+    <pool>Mask</pool>
+    <bigSpriteKey>Prompts.CollectorsMap</bigSpriteKey>
+    <takeKey>GET_ITEM_INTRO1</takeKey>
+    <nameKey>RANDOMIZER_COLLECTOR_MAP</nameKey>
+    <buttonKey>RANDOMIZER_EMPTY</buttonKey>
+    <descOneKey>RANDOMIZER_MEME</descOneKey>
+    <descTwoKey>RANDOMIZER_EMPTY</descTwoKey>
+    <shopDescKey>RANDOMIZER_GET_COLLECTOR_MAP</shopDescKey>
+    <shopSpriteKey>ShopIcons.CollectorsMap</shopSpriteKey>
+    <areaName>City_of_Tears</areaName>
+  </item>
+  <item name="Bonus_Arcane_Egg">
+    <boolName>AreaRando.ArcaneEggBonus</boolName>
+    <type>Trinket</type>
+    <pool>Fake</pool>
+    <nameKey>RANDOMIZER_NAME_ARCANE_EGG</nameKey>
+    <logic></logic>
+    <trinketNum>4</trinketNum>
+    <isFake>true</isFake>
+  </item>
+  <item name="Small_Reward_Geo">
+    <boolName>smallrewardgeo</boolName>
+    <type>Geo</type>
+    <pool>Fake</pool>
+    <geo>1500</geo>
+    <logic></logic>
+    <isFake>true</isFake>
+  </item>
+  <item name="Pleasure_House">
+    <boolName>pleasureHouseGeo</boolName>
+    <sceneName>Ruins_Bathhouse</sceneName>
+    <newShiny>true</newShiny>
+    <x>54</x>
+    <y>32</y>
+    <logic></logic>
+    <pool>Fake</pool>
+    <isFake>true</isFake>
+  </item>  
+    <shop name="Sly">
+        <sceneName>Room_shop</sceneName>
+        <objectName>Shop Menu</objectName>
+        <logic>CROSSROADS + DIRTMOUTH</logic>
+        <requiredPlayerDataBool></requiredPlayerDataBool>
+    </shop>
+    <shop name="Sly_(Key)">
+        <sceneName>Room_shop</sceneName>
+        <objectName>Shop Menu</objectName>
+        <logic>CROSSROADS + DIRTMOUTH + SHOPKEY</logic>
+        <requiredPlayerDataBool>gaveSlykey</requiredPlayerDataBool>
+    </shop>
+    <shop name="Iselda">
+        <sceneName>Room_mapper</sceneName>
+        <objectName>Shop Menu</objectName>
+        <logic>CROSSROADS + DIRTMOUTH</logic>
+        <requiredPlayerDataBool></requiredPlayerDataBool>
+    </shop>
+    <shop name="Salubra">
+        <sceneName>Room_Charm_Shop</sceneName>
+        <objectName>Shop Menu</objectName>
+        <logic>CROSSROADS</logic>
+        <requiredPlayerDataBool></requiredPlayerDataBool>
+    </shop>
+    <shop name="Leg_Eater">
+        <sceneName>Fungus2_26</sceneName>
+        <objectName>Shop Menu</objectName>
+        <logic>FUNGALWASTES</logic>
+        <requiredPlayerDataBool></requiredPlayerDataBool>
+        <dungDiscount>true</dungDiscount>
+    </shop>
+    <additiveItemSet name="DASH">
+        <itemName>Mothwing_Cloak</itemName>
+        <itemName>Shade_Cloak</itemName>
+    </additiveItemSet>
+    <additiveItemSet name="FIREBALL">
+        <itemName>Vengeful_Spirit</itemName>
+        <itemName>Shade_Soul</itemName>
+    </additiveItemSet>
+    <additiveItemSet name="QUAKE">
+        <itemName>Desolate_Dive</itemName>
+        <itemName>Descending_Dark</itemName>
+    </additiveItemSet>
+    <additiveItemSet name="SCREAM">
+        <itemName>Howling_Wraiths</itemName>
+        <itemName>Abyss_Shriek</itemName>
+    </additiveItemSet>
+    <additiveItemSet name="DREAMNAIL">
+        <itemName>Dream_Nail</itemName>
+        <itemName>Dream_Gate</itemName>
+    </additiveItemSet>
+    <additiveItemSet name="VOIDHEART">
+        <itemName>Queen_Fragment</itemName>
+        <itemName>King_Fragment</itemName>
+        <itemName>Void_Heart</itemName>
+    </additiveItemSet>
+    <macro name="SHADOWDASH">Mothwing_Cloak + Shade_Cloak</macro>
+    <macro name="SUPERDASH">Crystal_Heart</macro>
+    <macro name="ACID">Isma's_Tear</macro>
+    <macro name="WINGS">Monarch_Wings</macro>
+    <macro name="CLAW">Mantis_Claw</macro>
+    <macro name="CREST">City_Crest</macro>
+    <macro name="SIMPLE1">Sly_Simple_Key | City_Simple_Key | Basin_Simple_Key | Lurker_Simple_Key</macro>
+    <macro name="SIMPLE4">Sly_Simple_Key + City_Simple_Key + Basin_Simple_Key + Lurker_Simple_Key</macro>
+    <macro name="TRAM">Tram_Pass</macro>
+    <macro name="LANTERN">Lumafly_Lantern</macro>
+    <macro name="SHOPKEY">Shopkeeper's_Key</macro>  
+    <macro name="ELEGANT">Elegant_Key</macro>
+    <macro name="LOVE">Love_Key</macro>
+    <macro name="BRAND">King's_Brand</macro>
+    <macro name="KINGSOUL">(Queen_Fragment + King_Fragment) | (Queen_Fragment + Void_Heart) | (King_Fragment + Void_Heart)</macro>
+    <macro name="BALDURS">FIREBALL | QUAKE | Grubberfly's_Elegy | Glowing_Womb | Spore_Shroom | Weaversong | Mark_of_Pride | Cyclone_Slash | (Dash_Slash + DASH)</macro>
+    <macro name="SHARPSHADOW">Sharp_Shadow + SHADOWDASH</macro>
+    <macro name="DASHMASTER">Dashmaster + DASH</macro>
+    <macro name="INFECTED">Lurien | Monomon | Herrah</macro>
+  <macro name="UPPERTRAM">TRAM + (Crossroads_01[top1] | Crossroads_50[left1] | RestingGrounds_02[top1] | Ruins2_10b[right1] | ((Ruins2_04[left2] | Ruins2_11_b[right1] | Ruins2_07[right1]) + (CLAW | WINGS)))</macro>
+  <macro name="LOWERTRAM">TRAM + ((Abyss_02[right1] | Deepnest_East_01[right1] | Deepnest_East_02[top1] | Abyss_03_c[right1]) | (CLAW + (Fungus2_25[right1] | Fungus2_25[top2])) | ((CLAW | WINGS) + (Deepnest_01b[top1] | Deepnest_01b[top2] | Deepnest_42[top1] | Abyss_04[bot1])))</macro>
+  <macro name="LEFTELEVATOR">(Ruins1_01[left1] | Ruins1_04[bot1] | Ruins1_05b[bot1] | Ruins2_04[left2] | Ruins2_10b[right1] | Ruins2_11_b[right1] | Ruins2_07[right1]) + (CLAW | WINGS)</macro>
+  <macro name="RIGHTELEVATOR">((Ruins2_04[left2] | Ruins2_11_b[right1] | Ruins2_07[right1]) + (CLAW | WINGS)) | Ruins2_10b[right1] | Crossroads_50[left1] | ((UPPERTRAM | RestingGrounds_02[top1]) + QUAKE)</macro>
+  <macro name="CROSSROADS">Crossroads_01[top1] | (CLAW + (ACID | SUPERDASH) + Crossroads_35[bot1]) | Crossroads_18[bot1] | Crossroads_04[right1] | (LANTERN + Mines_33[right1]) | Crossroads_45[right1] | Crossroads_06[door1] | UPPERTRAM | LEFTELEVATOR</macro>
+  <macro name="GREENPATH">Fungus1_01[right1] | Fungus1_20_v02[right1] | Fungus1_11[bot1]</macro>
+  <macro name="LEFTFOGCANYON">Fungus3_01[top1] | (CLAW + Fungus3_44[bot1]) | Fungus3_44[door1] | ((ACID | (CLAW + SUPERDASH)) + Fungus3_03[left1]) | Fungus3_02[right2] | Fungus3_26[top1] | Fungus3_26[right1]</macro>
+  <macro name="RIGHTFOGCANYON">Fungus3_26[top1] | Fungus3_26[right1] | (SHADOWDASH + (Fungus3_01[top1] | (CLAW + Fungus3_44[bot1]) | ((ACID | (CLAW + SUPERDASH)) + Fungus3_03[left1]) | Fungus3_02[right2]))</macro>
+  <macro name="FUNGALWASTES">((DASH | CLAW | WINGS | SUPERDASH | FIREBALL | SCREAM) + Fungus2_01[left1]) | (ACID + Fungus2_33[left1]) | Fungus2_06[top1] | (CLAW + QUAKE + Fungus2_21[right1]) | ((Waterways_01[top1] | (CLAW + SUPERDASH + (Waterways_07[door1] | Waterways_14[bot2]))) + (CLAW | WINGS) + Fungus2_23[right2]) | (CLAW + Fungus2_15[left1]) | ((CLAW | WINGS) + (Deepnest_01[bot1] | Deepnest_01[left1]))</macro>
+  <macro name="DEEPNEST">(CLAW + (Fungus2_25[right1] | Fungus2_25[top2])) | ((CLAW | WINGS) + (Deepnest_01b[top1] | Deepnest_01b[top2] | Deepnest_42[top1])) + LOWERTRAM</macro>
+  <macro name="LOWERKINGDOMSEDGE">Deepnest_East_01[right1] | Deepnest_East_02[top1] | Abyss_03_c[right1] | LOWERTRAM</macro>
+  <macro name="CENTRALKINGDOMSEDGE">((CLAW | WINGS) + (Deepnest_East_01[right1] | Abyss_03_c[right1] | LOWERTRAM)) | Deepnest_East_02[top1] | Deepnest_East_03[left1] | Deepnest_East_07[left2]</macro>
+  <macro name="HIVE">Hive_01[left1] | Hive_03_c[left1]</macro>
+  <macro name="ANCIENTBASIN">Abyss_02[right1] | Abyss_04[bot1] | LOWERTRAM</macro>
+  <macro name="ABYSS">Abyss_06_Core[top1] + King's_Brand</macro>
+  <macro name="LEFTWATERWAYS">Waterways_01[top1] | ((CLAW | WINGS) + Waterways_09[left1]) | (CLAW + WINGS + Room_GG_Shortcut[top1]) | (CLAW + SUPERDASH + (Waterways_07[door1] | Waterways_14[bot2]))</macro>
+  <macro name="RIGHTWATERWAYS">(LEFTWATERWAYS + SUPERDASH + (CLAW | (ACID + WINGS))) | (CLAW + (ACID | SUPERDASH) + Waterways_14[bot2]) | Waterways_07[door1]</macro>
+  <macro name="LEFTCITY">Ruins1_01[left1] | Ruins1_04[bot1] | Ruins1_05b[bot1] | Ruins2_04[left2] | Ruins2_10b[right1] | Ruins2_11_b[right1] | Ruins2_07[right1] | RIGHTELEVATOR</macro>
+  <macro name="RIGHTCITY">((CLAW + WINGS) + (Ruins1_01[left1] | Ruins1_04[bot1] | Ruins1_05b[bot1])) | Ruins2_04[left2] | (CLAW + Ruins_House_03[left2]) | Ruins2_10b[right1] | Ruins2_11_b[right1] | Ruins2_07[right1] | RIGHTELEVATOR</macro>
+  <macro name="UPPERRESTINGGROUNDS">Crossroads_50[left1] | RestingGrounds_02[top1] | UPPERTRAM | RIGHTELEVATOR</macro>
+  <macro name="LOWERRESTINGGROUNDS">Crossroads_50[left1] | RIGHTELEVATOR | (QUAKE + (RestingGrounds_02[top1] | UPPERTRAM))</macro>
+  <macro name="CRYSTALPEAK">(QUAKE + Mines_01[left1]) | Mines_02[left1] | (CLAW + SUPERDASH + Mines_10[left1]) | ((SUPERDASH | (WINGS + DASH)) + Mines_28[door1])</macro>
+  <macro name="QUEENSGARDENS">Fungus3_34[right1] | Fungus3_34[top1] | (DASH + Fungus3_22[right1]) | (CLAW + Deepnest_43[bot1])</macro>
+  <macro name="HOWLINGCLIFFS">(CLAW + BALDURS + Fungus1_28[left2]) | ((CLAW | WINGS) + Cliffs_02[bot1])</macro>
+  <macro name="DIRTMOUTHSTAG">CROSSROADS | GREENPATH | (FUNGALWASTES | Fungus2_01[left1]) | (((CLAW | WINGS) + DASH + QUEENSGARDENS) | (DASH + Fungus3_22[right1])) | LEFTELEVATOR | RIGHTELEVATOR | UPPERRESTINGGROUNDS | ((CLAW | WINGS) + DEEPNEST) | ((CLAW + WINGS) + ANCIENTBASIN)</macro>
+  <macro name="DIRTMOUTH">Town[left1] | Town[right1] | Town[bot1] | DIRTMOUTHSTAG</macro>
+</randomizer>
