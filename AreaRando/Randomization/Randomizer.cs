@@ -13,7 +13,7 @@ namespace AreaRando.Randomization
         private static Dictionary<string, string> nonShopItems;
         private static Dictionary<string, string> transitionPlacements;
 
-        private static List<string> unplacedTransitions;
+        private static List<string> unplacedTransitions; // Transitions not yet handled by the randomizer
         private static List<string> leftTransitions;
         private static List<string> rightTransitions;
         private static List<string> topTransitions;
@@ -28,6 +28,7 @@ namespace AreaRando.Randomization
         private static List<string> progressionStandby;
         private static List<string> locationStandby;
         private static Dictionary<string, string> deepProgressionTransitions; // Gives the transition which along with a given item results in progression
+        private static Dictionary<string, string> standbyTransitions; // For temporarily assigning isolated transitions
 
         private static int randomizerAttempts;
 
@@ -50,6 +51,13 @@ namespace AreaRando.Randomization
             validated = false;
             randomizerAttempts = 0;
 
+            Dictionary<string, int> kpCounts = new Dictionary<string, int>();
+
+            foreach (string transition in LogicManager.TransitionNames)
+            {
+                kpCounts.Add(transition, 0);
+            }
+
             Randomizer:
             while (true)
             {
@@ -58,6 +66,7 @@ namespace AreaRando.Randomization
                 BuildSpanningTree();
                 PlaceSpecialTransitions();
                 CompleteTransitionGraph();
+
                 if (!randomizationError) break;
                 else
                 {
@@ -126,6 +135,8 @@ namespace AreaRando.Randomization
             rightTransitions = new List<string>();
             topTransitions = new List<string>();
             botTransitions = new List<string>();
+            deepProgressionTransitions = new Dictionary<string, string>();
+            standbyTransitions = new Dictionary<string, string>();
 
             unobtainedItems = new List<string>();
             unobtainedLocations = new List<string>();
@@ -137,6 +148,7 @@ namespace AreaRando.Randomization
                 if (!def.isFake) unobtainedItems.Add(item);
             }
             unobtainedLocations.AddRange(LogicManager.ShopNames.ToList());
+            RemoveNonrandomizedItems();
         }
         private static void SetupItemVariables()
         {
@@ -156,15 +168,17 @@ namespace AreaRando.Randomization
                     unobtainedLocations.Add(itemName);
                 }
             }
-
             unobtainedLocations.AddRange(shopItems.Keys);
             unobtainedItems = LogicManager.ItemNames.ToList();
+            RemoveNonrandomizedItems();
+
             shopNames = LogicManager.ShopNames.ToList();
             randomizedItems = new List<string>();
             junkStandby = new List<string>();
             progressionStandby = new List<string>();
             locationStandby = new List<string>();
             obtainedProgression = new int[LogicManager.bitMaskMax + 1];
+            obtainedProgression = LogicManager.AddDifficultySettings(obtainedProgression);
 
             foreach (string _itemName in LogicManager.ItemNames)
             {
@@ -197,6 +211,94 @@ namespace AreaRando.Randomization
             Done = false;
         }
 
+        private static void RemoveNonrandomizedItems()
+        {
+            if (!AreaRando.Instance.Settings.RandomizeGeoChests)
+            {
+                foreach (string _itemName in LogicManager.ItemNames)
+                {
+                    ReqDef item = LogicManager.GetItemDef(_itemName);
+                    if (item.pool == "Geo")
+                    {
+                        unobtainedItems.Remove(_itemName);
+                        unobtainedLocations.Remove(_itemName);
+                    }
+                }
+            }
+            if (!AreaRando.Instance.Settings.RandomizeMaskShards)
+            {
+                foreach (string _itemName in LogicManager.ItemNames)
+                {
+                    ReqDef item = LogicManager.GetItemDef(_itemName);
+                    if (item.pool == "Mask")
+                    {
+                        unobtainedItems.Remove(_itemName);
+                        unobtainedLocations.Remove(_itemName);
+                    }
+                }
+            }
+            if (!AreaRando.Instance.Settings.RandomizeVesselFragments)
+            {
+                foreach (string _itemName in LogicManager.ItemNames)
+                {
+                    ReqDef item = LogicManager.GetItemDef(_itemName);
+                    if (item.pool == "Vessel")
+                    {
+                        unobtainedItems.Remove(_itemName);
+                        unobtainedLocations.Remove(_itemName);
+                    }
+                }
+            }
+            if (!AreaRando.Instance.Settings.RandomizeCharmNotches)
+            {
+                foreach (string _itemName in LogicManager.ItemNames)
+                {
+                    ReqDef item = LogicManager.GetItemDef(_itemName);
+                    if (item.pool == "Notch")
+                    {
+                        unobtainedItems.Remove(_itemName);
+                        unobtainedLocations.Remove(_itemName);
+                    }
+                }
+            }
+            if (!AreaRando.Instance.Settings.RandomizePaleOre)
+            {
+                foreach (string _itemName in LogicManager.ItemNames)
+                {
+                    ReqDef item = LogicManager.GetItemDef(_itemName);
+                    if (item.pool == "Ore")
+                    {
+                        unobtainedItems.Remove(_itemName);
+                        unobtainedLocations.Remove(_itemName);
+                    }
+                }
+            }
+            if (!AreaRando.Instance.Settings.RandomizeRancidEggs)
+            {
+                foreach (string _itemName in LogicManager.ItemNames)
+                {
+                    ReqDef item = LogicManager.GetItemDef(_itemName);
+                    if (item.pool == "Egg")
+                    {
+                        unobtainedItems.Remove(_itemName);
+                        unobtainedLocations.Remove(_itemName);
+                    }
+                }
+            }
+            if (!AreaRando.Instance.Settings.RandomizeRelics)
+            {
+                foreach (string _itemName in LogicManager.ItemNames)
+                {
+                    ReqDef item = LogicManager.GetItemDef(_itemName);
+                    if (item.pool == "Relic")
+                    {
+                        unobtainedItems.Remove(_itemName);
+                        unobtainedLocations.Remove(_itemName);
+                    }
+                }
+            }
+        }
+
         private static void BuildSpanningTree()
         {
             List<string> areas = new List<string>();
@@ -205,19 +307,25 @@ namespace AreaRando.Randomization
             foreach (string transition in LogicManager.TransitionNames)
             {
                 TransitionDef def = LogicManager.GetTransitionDef(transition);
-                if (def.areaName == "Kings_Pass") continue;
-                if (!def.deadEnd && def.oneWay == 0 && !areas.Contains(def.areaName))
+                if (def.areaName == "Kings_Pass" || def.areaName == "Resting_Grounds" || def.areaName == "Ancient_Basin") continue; //excempt certain areas which have few transitions and are accessible through other means
+                if (!areas.Contains(def.areaName) && !def.deadEnd)
                 {
                     areas.Add(def.areaName);
                     areaTransitions.Add(def.areaName, new List<string>());
                 }
-                if (!def.deadEnd && def.oneWay == 0) areaTransitions[def.areaName].Add(transition);
+            }
+            foreach (string transition in LogicManager.TransitionNames)
+            {
+                TransitionDef def = LogicManager.GetTransitionDef(transition);
+
+                if (def.oneWay == 0 && areas.Contains(def.areaName)) areaTransitions[def.areaName].Add(transition);
             }
             
             List<string> remainingAreas = areas;
             string firstArea = "Dirtmouth"; // It's almost impossible to be locked out of Dirtmouth, so this is a good choice for basepoint, wrt picking isolated and deadend transitions
             remainingAreas.Remove(firstArea);
-            AddToDirectedTransitions(areaTransitions[firstArea]);
+            AddToDirectedTransitions(areaTransitions[firstArea].Where(transition => !LogicManager.GetTransitionDef(transition).isolated).ToList());
+            RemoveFromDirectedTransitions(new List<string> { "Town[left1]" }); // Protect this transition so as to not distort starting entrance placement
             int failsafe = 0;
 
             while (remainingAreas.Any())
@@ -230,10 +338,10 @@ namespace AreaRando.Randomization
                 }
 
                 string nextArea = remainingAreas[rand.Next(remainingAreas.Count)];
-                List<string> newAreaTransitions = areaTransitions[nextArea].Where(transition => !LogicManager.GetTransitionDef(transition).isolated && TestLegalDirections(LogicManager.GetTransitionDef(transition).doorName)).ToList();
-                if (newAreaTransitions.Count < 1) continue;
+                List<string> nextAreaTransitions = areaTransitions[nextArea].Where(transition => !LogicManager.GetTransitionDef(transition).deadEnd && TestLegalDirections(LogicManager.GetTransitionDef(transition).doorName)).ToList();
+                if (nextAreaTransitions.Count < 1) continue;
 
-                string nextTransition = newAreaTransitions[rand.Next(newAreaTransitions.Count)];
+                string nextTransition = nextAreaTransitions[rand.Next(nextAreaTransitions.Count)];
                 string transitionSource = GetNextTransition(LogicManager.GetTransitionDef(nextTransition).doorName);
 
                 transitionPlacements.Add(transitionSource, nextTransition);
@@ -242,7 +350,7 @@ namespace AreaRando.Randomization
                 unplacedTransitions.Remove(nextTransition);
                 remainingAreas.Remove(nextArea);
 
-                List<string> newTransitions = areaTransitions[nextArea];
+                List<string> newTransitions = areaTransitions[nextArea].Where(transition => !LogicManager.GetTransitionDef(transition).isolated).ToList();
                 AddToDirectedTransitions(newTransitions);
                 RemoveFromDirectedTransitions(new List<string> { nextTransition, transitionSource });
             }
@@ -252,8 +360,6 @@ namespace AreaRando.Randomization
         {
             if (randomizationError) return;
 
-            Stopwatch specialTransitions = new Stopwatch();
-            specialTransitions.Start();
             List<string> oneWayEntrances = LogicManager.TransitionNames.Where(transition => LogicManager.GetTransitionDef(transition).oneWay == 1).ToList();
             List<string> oneWayExits = LogicManager.TransitionNames.Where(transition => LogicManager.GetTransitionDef(transition).oneWay == 2).ToList();
 
@@ -289,8 +395,8 @@ namespace AreaRando.Randomization
             {
                 string transition1 = isolatedTransitions[rand.Next(isolatedTransitions.Count)];
                 string transition2 = GetNextTransition(LogicManager.GetTransitionDef(transition1).doorName);
-                transitionPlacements.Add(transition1, transition2);
-                transitionPlacements.Add(transition2, transition1);
+                standbyTransitions.Add(transition1, transition2);
+                standbyTransitions.Add(transition2, transition1);
                 isolatedTransitions.Remove(transition1);
                 RemoveFromDirectedTransitions(new List<string> { transition2 });
                 unplacedTransitions.Remove(transition1);
@@ -301,15 +407,15 @@ namespace AreaRando.Randomization
         private static void CompleteTransitionGraph()
         {
             if (randomizationError) return;
-            Log("Beginning full placement of transitions...");
+            //Log("Beginning full placement of transitions...");
 
             int[] obtained = new int[LogicManager.bitMaskMax + 1];
+            obtained = LogicManager.AddDifficultySettings(obtained);
             List<string> reachableTransitions = new List<string>();
             List<string> reachableLocations = new List<string>();
 
-            ClearDirectedTransitions();
-            AddToDirectedTransitions(unplacedTransitions);
             int failsafe = 0;
+
             while (unplacedTransitions.Any())
             {
                 reachableTransitions = GetReachableTransitions(obtained);
@@ -325,14 +431,31 @@ namespace AreaRando.Randomization
                     List<string> candidateItems = GetAreaCandidateItems();
                     if (candidateItems.Count > 0)
                     {
-                        string placeLocation = reachableLocations[rand.Next(reachableLocations.Count)];
-                        string placeItem = candidateItems[rand.Next(candidateItems.Count)];
-                        unobtainedItems.Remove(placeItem);
-                        reachableLocations.Remove(placeLocation);
-                        unobtainedLocations.Remove(placeLocation);
-                        obtained = LogicManager.AddObtainedProgression(obtained, placeItem);
+                        if (reachableLocations.Contains("Fury_of_the_Fallen"))
+                        {
+                            string placeLocation = "Fury_of_the_Fallen";
+                            candidateItems.Remove("Mantis_Claw");
+                            candidateItems.Remove("Monarch_Wings");
+                            string placeItem = candidateItems[rand.Next(candidateItems.Count)];
+                            unobtainedItems.Remove(placeItem);
+                            reachableLocations.Remove(placeLocation);
+                            unobtainedLocations.Remove(placeLocation);
+                            obtained = LogicManager.AddObtainedProgression(obtained, placeItem);
+                        }
+                        else
+                        {
+                            string placeLocation = reachableLocations[rand.Next(reachableLocations.Count)];
+                            string placeItem = candidateItems[rand.Next(candidateItems.Count)];
+                            unobtainedItems.Remove(placeItem);
+                            reachableLocations.Remove(placeLocation);
+                            unobtainedLocations.Remove(placeLocation);
+                            obtained = LogicManager.AddObtainedProgression(obtained, placeItem);
+                        }
                     }
                 }
+
+                ClearDirectedTransitions();
+                AddToDirectedTransitions(unplacedTransitions);
 
                 List<string> placeableTransitions = reachableTransitions.Where(transition => TestLegalDirections(LogicManager.GetTransitionDef(transition).doorName)).ToList();
 
@@ -344,6 +467,7 @@ namespace AreaRando.Randomization
                     Log("Reachable unplaced transitions: " + reachableTransitions.Count);
                     Log("Reachable unplaced transitions, directionally compatible: " + placeableTransitions.Count);
                     Log("Reachable item locations: " + reachableLocations.Count);
+                    foreach (string t in unplacedTransitions) Log(t);
                     randomizationError = true;
                     return;
                 }
@@ -360,7 +484,6 @@ namespace AreaRando.Randomization
                     string transition2 = GetNextTransition(LogicManager.GetTransitionDef(transition1).doorName);
                     transitionPlacements.Add(transition1, transition2);
                     transitionPlacements.Add(transition2, transition1);
-                    RemoveFromDirectedTransitions(new List<string> { transition1, transition2 });
                     unplacedTransitions.Remove(transition1);
                     unplacedTransitions.Remove(transition2);
                     obtained = LogicManager.AddObtainedProgression(obtained, transition2);
@@ -378,6 +501,59 @@ namespace AreaRando.Randomization
                     obtained = LogicManager.AddObtainedProgression(obtained, transition2);
                     continue;
                 }
+                else if (placeableTransitions.FirstOrDefault() == "Tutorial_01[right1]" && reachableLocations.FirstOrDefault() == "Fury_of_the_Fallen")
+                {
+                    List<string> progressionItems = GetDeepProgression(obtained);
+                    progressionItems.Remove("Mantis_Claw");
+                    progressionItems.Remove("Monarch_Wings");
+                    deepProgressionTransitions.Remove("Mantis_Claw");
+                    deepProgressionTransitions.Remove("Monarch_Wings");
+
+                    List<string> progressionTransitions = GetProgressionTransitions(obtained);
+
+                    foreach (string item in progressionItems)
+                    {
+                        if (deepProgressionTransitions.TryGetValue(item, out string transition) && progressionTransitions.Contains(transition)) deepProgressionTransitions.Remove(item);
+                    }
+
+                    progressionTransitions = progressionTransitions.Union(deepProgressionTransitions.Values).ToList();
+
+                    if (progressionTransitions.Count > 0)
+                    {
+                        ClearDirectedTransitions();
+                        AddToDirectedTransitions(progressionTransitions);
+                        bool placed = false;
+                        foreach (string transition1 in placeableTransitions)
+                        {
+                            if (TestLegalDirections(LogicManager.GetTransitionDef(transition1).doorName))
+                            {
+                                string transition2 = GetNextTransition(LogicManager.GetTransitionDef(transition1).doorName);
+
+                                transitionPlacements.Add(transition1, transition2);
+                                transitionPlacements.Add(transition2, transition1);
+                                unplacedTransitions.Remove(transition1);
+                                unplacedTransitions.Remove(transition2);
+
+                                UpdateTransitionStandby(transition1, transition2);
+
+                                if (deepProgressionTransitions.ContainsValue(transition2))
+                                {
+                                    string placeItem = deepProgressionTransitions.Keys.Where(key => deepProgressionTransitions[key] == transition2).First();
+                                    string placeLocation = reachableLocations[rand.Next(reachableLocations.Count)];
+                                    unobtainedItems.Remove(placeItem);
+                                    reachableLocations.Remove(placeLocation);
+                                    unobtainedLocations.Remove(placeLocation);
+                                    obtained = LogicManager.AddObtainedProgression(obtained, placeItem);
+                                }
+
+                                obtained = LogicManager.AddObtainedProgression(obtained, transition2);
+                                placed = true;
+                                continue;
+                            }
+                        }
+                        if (placed) continue;
+                    }
+                }
                 else if (placeableTransitions.Count != 0)
                 {
                     List<string> progressionTransitions = GetProgressionTransitions(obtained);
@@ -391,18 +567,19 @@ namespace AreaRando.Randomization
                             if (TestLegalDirections(LogicManager.GetTransitionDef(transition1).doorName))
                             {
                                 string transition2 = GetNextTransition(LogicManager.GetTransitionDef(transition1).doorName);
+
                                 transitionPlacements.Add(transition1, transition2);
                                 transitionPlacements.Add(transition2, transition1);
                                 unplacedTransitions.Remove(transition1);
                                 unplacedTransitions.Remove(transition2);
-                                RemoveFromDirectedTransitions(new List<string> { transition1, transition2 });
+
+                                UpdateTransitionStandby(transition1, transition2);
+
                                 obtained = LogicManager.AddObtainedProgression(obtained, transition2);
                                 placed = true;
                                 continue;
                             }
                         }
-                        ClearDirectedTransitions();
-                        AddToDirectedTransitions(unplacedTransitions);
                         if (placed) continue;
                     }
                 }
@@ -414,10 +591,14 @@ namespace AreaRando.Randomization
 
                     // Strongly discourage building map around claw start, if possible
                     if (progressionItems.Count > 1 && reachableLocations.First() == "Fury_of_the_Fallen")
-                    {
+                    { 
                         progressionItems.Remove("Mantis_Claw");
                     }
-                    
+                    if (progressionItems.Count > 1 && reachableLocations.First() == "Fury_of_the_Fallen")
+                    {
+                        progressionItems.Remove("Monarch_Wings");
+                    }
+
                     if (progressionItems.Count > 0)
                     {
                         string placeItem = progressionItems[rand.Next(progressionItems.Count)];
@@ -432,16 +613,16 @@ namespace AreaRando.Randomization
                             ClearDirectedTransitions();
                             AddToDirectedTransitions(GetReachableTransitions(obtained).Intersect(unplacedTransitions).ToList());
                             string transition1 = GetNextTransition(LogicManager.GetTransitionDef(transition2).doorName);
+                            
                             transitionPlacements.Add(transition1, transition2);
                             transitionPlacements.Add(transition2, transition1);
                             unplacedTransitions.Remove(transition1);
                             unplacedTransitions.Remove(transition2);
+
+                            UpdateTransitionStandby(transition1, transition2);
+
                             obtained = LogicManager.AddObtainedProgression(obtained, transition2);
-                            ClearDirectedTransitions();
-                            AddToDirectedTransitions(unplacedTransitions);
                         }
-
-
                         continue;
                     }
                     // Last ditch effort to save the seed
@@ -456,6 +637,11 @@ namespace AreaRando.Randomization
                         continue;
                     }
                 }
+            }
+
+        foreach (KeyValuePair<string, string> kvp in standbyTransitions)
+            {
+                transitionPlacements.Add(kvp.Key, kvp.Value);
             }
         }
 
@@ -573,6 +759,30 @@ namespace AreaRando.Randomization
             }
             return transitionSource;
         }
+        
+        private static void UpdateTransitionStandby(string transition1, string transition2)
+        {
+            ClearDirectedTransitions();
+            AddToDirectedTransitions(unplacedTransitions);
+
+            if (standbyTransitions.TryGetValue(transition1, out string oldTransition2))
+            {
+                standbyTransitions.Remove(transition1);
+                string newTransition1 = GetNextTransition(LogicManager.GetTransitionDef(oldTransition2).doorName);
+                standbyTransitions[oldTransition2] = newTransition1;
+                standbyTransitions.Add(newTransition1, oldTransition2);
+                unplacedTransitions.Remove(newTransition1);
+            }
+
+            if (standbyTransitions.TryGetValue(transition2, out string oldTransition1))
+            {
+                standbyTransitions.Remove(transition2);
+                string newTransition2 = GetNextTransition(LogicManager.GetTransitionDef(oldTransition1).doorName);
+                standbyTransitions[oldTransition1] = newTransition2;
+                standbyTransitions.Add(newTransition2, oldTransition1);
+                unplacedTransitions.Remove(newTransition2);
+            }
+        }
 
         private static List<string> GetProgressionTransitions(int[] externalObtained)
         {
@@ -581,7 +791,10 @@ namespace AreaRando.Randomization
             List<string> reachableTransitions = GetReachableTransitions(obtained);
             List<string> progression = new List<string>();
 
-            List<string> candidateTransitions = unplacedTransitions.Except(reachableTransitions).ToList();
+            List<string> candidateTransitions = new List<string>();
+            candidateTransitions.AddRange(unplacedTransitions);
+            candidateTransitions.AddRange(standbyTransitions.Keys);
+            candidateTransitions = candidateTransitions.Except(reachableTransitions).ToList();
 
             foreach (string transition in candidateTransitions)
             {
@@ -619,6 +832,7 @@ namespace AreaRando.Randomization
 
         private static List<string> GetDeepProgression(int[] externalObtained)
         {
+            List<string> alreadyProgressionTransitions = GetProgressionTransitions(externalObtained);
             int[] obtained = new List<int>(externalObtained).ToArray();
             int reachableCount = GetReachableLocations(obtained).Count;
             List<string> progression = new List<string>();
@@ -637,7 +851,7 @@ namespace AreaRando.Randomization
                 if (GetReachableLocations(obtained).Count > reachableCount) progression.Add(str);
                 else
                 {
-                    List<string> candidateTransitions = GetProgressionTransitions(obtained).Where(transition => TestLegalDirections(LogicManager.GetTransitionDef(transition).doorName)).ToList();
+                    List<string> candidateTransitions = GetProgressionTransitions(obtained).Where(transition => TestLegalDirections(LogicManager.GetTransitionDef(transition).doorName)).Except(alreadyProgressionTransitions).ToList();
                     List<string> foundTransitions = new List<string>();
 
                     foreach (string transition in candidateTransitions)
@@ -645,6 +859,7 @@ namespace AreaRando.Randomization
                         obtained = new List<int>(externalObtained).ToArray();
                         obtained = LogicManager.AddObtainedProgression(obtained, str);
                         obtained = LogicManager.AddObtainedProgression(obtained, transition);
+                        obtained = AddReachableTransitions(obtained);
                         if (GetReachableLocations(obtained).Count > reachableCount)
                         {
                             foundTransitions.Add(transition);
@@ -855,6 +1070,7 @@ namespace AreaRando.Randomization
             everything.AddRange(LogicManager.TransitionNames);
 
             int[] obtained = new int[LogicManager.bitMaskMax + 1];
+            obtained = LogicManager.AddDifficultySettings(obtained);
             int passes = 0;
             while (everything.Any())
             {
@@ -909,7 +1125,10 @@ namespace AreaRando.Randomization
             {
                 foreach (string item in kvp.Value)
                 {
-                    if (LogicManager.GetItemDef(item).progression) LogItemPlacement(item, kvp.Key);
+                    if (LogicManager.GetItemDef(item).progression)
+                    {
+                        LogItemPlacement(item, kvp.Key);
+                    }
                 }
             }
 
@@ -923,7 +1142,10 @@ namespace AreaRando.Randomization
             {
                 foreach (string item in kvp.Value)
                 {
-                    if (!LogicManager.GetItemDef(item).progression) LogItemPlacement(item, kvp.Key);
+                    if (!LogicManager.GetItemDef(item).progression)
+                    {
+                        LogItemPlacement(item, kvp.Key);
+                    }
                 }
             }
 

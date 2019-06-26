@@ -158,7 +158,7 @@ namespace AreaRando
                     break;
                 case SceneNames.GG_Waterways:
                     PlayerData.instance.SetBool("godseekerUnlocked", true);
-                    if (PlayerData.instance.simpleKeys < 1) Object.Destroy(GameObject.Find("Randomizer Shiny"));
+                    if (PlayerData.instance.simpleKeys < 1 || (!PlayerData.instance.openedWaterwaysManhole && PlayerData.instance.simpleKeys < 2)) Object.Destroy(GameObject.Find("Randomizer Shiny"));
                     else GameObject.Find("Randomizer Shiny").LocateMyFSM("Shiny Control").GetState("Charm?").AddFirstAction(new RandomizerExecuteLambda(() => PlayerData.instance.DecrementInt("simpleKeys")));
                     break;
                 case SceneNames.Crossroads_09:
@@ -338,14 +338,6 @@ namespace AreaRando
                         moth.FsmVariables.GetFsmBool("Got Reward 7").Value = true;
                     }
                     break;
-                case SceneNames.Room_Colosseum_02:
-                    // Move the upward loads in colo downward to prevent bench soft lock
-                    GameObject coloTransition1 = GameObject.Find("top1");
-                    GameObject coloTransition2 = GameObject.Find("top2");
-
-                    coloTransition1.transform.SetPositionY(coloTransition1.transform.position.y - 9f);
-                    coloTransition2.transform.SetPositionY(coloTransition2.transform.position.y - 9f);
-                    break;
                 case SceneNames.Room_Sly_Storeroom:
                     // Make Sly pickup send Sly back upstairs
                     FsmState slyFinish = FSMUtility.LocateFSM(GameObject.Find("Randomizer Shiny"), "Shiny Control")
@@ -363,6 +355,13 @@ namespace AreaRando
                     chandelier.transform.SetPositionX(chandelier.transform.position.x - 2);
                     chandelier.GetComponent<NonBouncer>().active = false;
 
+                    break;
+                case SceneNames.Ruins1_09:
+                    if (GameManager.instance.entryGateName.StartsWith("t"))
+                    {
+                        Object.Destroy(GameObject.Find("Battle Gate"));
+                        Object.Destroy(GameObject.Find("Battle Scene"));
+                    }
                     break;
                 case SceneNames.Ruins1_24:
                     // Pickup (Quake Pickup) -> Idle -> GetPlayerDataInt (quakeLevel)
@@ -427,7 +426,6 @@ namespace AreaRando
 
                     // Prevent simple key softlocks
                     FsmState hotSpringsKey = GameObject.Find("Inspect").LocateMyFSM("Conversation Control").GetState("Got Key?");
-                    hotSpringsKey.RemoveActionsOfType<GetPlayerDataInt>();
                     hotSpringsKey.RemoveActionsOfType<IntCompare>();
                     hotSpringsKey.AddAction(new RandomizerExecuteLambda(() =>
                     {
@@ -539,8 +537,8 @@ namespace AreaRando
                 case SceneNames.Waterways_03:
                     if (AreaRando.Instance.Settings.Jiji)
                     {
-                        LanguageStringManager.SetLanguageString("TUK_RANCIDEGG_MIN", "Prices", "400");
-                        LanguageStringManager.SetLanguageString("TUK_RANCIDEGG_MAX", "Prices", "500");
+                        LanguageStringManager.SetLanguageString("TUK_RANCIDEGG_MIN", "Prices", "800");
+                        LanguageStringManager.SetLanguageString("TUK_RANCIDEGG_MAX", "Prices", "1000");
                     }
                     else
                     {
@@ -799,7 +797,7 @@ namespace AreaRando
 
             orig(self);
 
-            if (self.gameObject.name == "Knight" || self.FsmName == "Dream Nail")
+            if (self.gameObject.name != "Knight" || self.FsmName != "Dream Nail")
             {
                 return;
             }

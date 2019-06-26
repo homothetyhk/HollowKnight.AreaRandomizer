@@ -17,11 +17,12 @@ namespace AreaRando
 
         // index is how many hints, pair is item, location
         public (string, string)[] Hints => _hintInformation.Select(pair => (pair.Key, pair.Value)).ToArray();
+
         public SaveSettings()
         {
             AfterDeserialize += () =>
             {
-                RandomizerAction.CreateActions(ItemPlacements);
+                RandomizerAction.CreateActions(ItemPlacements, Seed);
             };
         }
 
@@ -177,7 +178,7 @@ namespace AreaRando
             set => SetBool(value);
         }
 
-        public bool MagSkips
+        public bool DarkRooms
         {
             get => GetBool(false);
             set => SetBool(value);

@@ -307,6 +307,17 @@ namespace AreaRando.Randomization
             return (obtained[a.Item2] & a.Item1) == a.Item1;
         }
 
+        public static int[] AddDifficultySettings(int[] obtained)
+        {
+            if (AreaRando.Instance.Settings.ShadeSkips) obtained = AddObtainedProgression(obtained, "SHADESKIPS");
+            if (AreaRando.Instance.Settings.AcidSkips) obtained = AddObtainedProgression(obtained, "ACIDSKIPS");
+            if (AreaRando.Instance.Settings.SpikeTunnels) obtained = AddObtainedProgression(obtained, "SPIKETUNNELS");
+            if (AreaRando.Instance.Settings.MiscSkips) obtained = AddObtainedProgression(obtained, "MISCSKIPS");
+            if (AreaRando.Instance.Settings.FireballSkips) obtained = AddObtainedProgression(obtained, "FIREBALLSKIPS");
+            if (AreaRando.Instance.Settings.DarkRooms) obtained = AddObtainedProgression(obtained, "DARKROOMS");
+            return obtained;
+        }
+
         public static string[] GetAdditiveItems(string name)
         {
             if (!_additiveItems.TryGetValue(name, out string[] items))
@@ -380,8 +391,16 @@ namespace AreaRando.Randomization
 
         private static void ProcessLogic()
         {
-            int i = 0;
             progressionBitMask = new Dictionary<string, (int,int)>();
+            progressionBitMask.Add("SHADESKIPS", (1, 0));
+            progressionBitMask.Add("ACIDSKIPS", (2,0));
+            progressionBitMask.Add("SPIKETUNNELS", (4,0));
+            progressionBitMask.Add("MISCSKIPS", (8,0));
+            progressionBitMask.Add("FIREBALLSKIPS", (16,0));
+            progressionBitMask.Add("DARKROOMS", (32,0));
+
+            int i = 6;
+
             foreach (string itemName in ItemNames)
             {
                 if (_items[itemName].progression)

@@ -144,7 +144,7 @@ namespace AreaRando
             }
             if (AreaRando.Instance.Settings.EarlyGeo)
             {
-                PlayerData.instance.AddGeo(200);
+                PlayerData.instance.AddGeo(300);
             }
 
 
@@ -168,7 +168,7 @@ namespace AreaRando
             try
             {
                 Randomizer.Randomize();
-                RandomizerAction.CreateActions(Settings.ItemPlacements);
+                RandomizerAction.CreateActions(Settings.ItemPlacements, Settings.Seed);
             }
             catch (Exception e)
             {
@@ -178,7 +178,7 @@ namespace AreaRando
 
         public override string GetVersion()
         {
-            string ver = "1.0";
+            string ver = "1.02";
             int minAPI = 51;
 
             bool apiTooLow = Convert.ToInt32(ModHooks.Instance.ModVersion.Split('-')[1]) < minAPI;
@@ -570,7 +570,9 @@ namespace AreaRando
             if (tp == null)
             {
                 if (self.sceneName == SceneNames.Fungus3_44 && info.EntryGateName == "left1") transitionName = self.sceneName + "[door1]";
+                else if (self.sceneName == SceneNames.Crossroads_02 && info.EntryGateName == "left1") transitionName = self.sceneName + "[door1]";
                 else if (self.sceneName == SceneNames.Crossroads_06 && info.EntryGateName == "left1") transitionName = self.sceneName + "[door1]";
+                else if (self.sceneName == SceneNames.Deepnest_10 && info.EntryGateName == "left1") transitionName = self.sceneName + "[door1]";
                 else
                 {
                     orig(self, info);

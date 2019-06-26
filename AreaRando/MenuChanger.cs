@@ -48,14 +48,14 @@ namespace AreaRando
 
             MenuButton backBtn = back.Clone("Back", MenuButton.MenuButtonType.Proceed, new Vector2(0, -100), "Back");
 
-            /*
+            
             RandoMenuItem<string> gameTypeBtn = new RandoMenuItem<string>(back, new Vector2(0, 600), "Game Type", "Normal", "Steel Soul");
 
             RandoMenuItem<string> presetPoolsBtn = new RandoMenuItem<string>(back, new Vector2(900, 1040), "Preset", "Progressive", "Completionist", "Junk Pit", "Custom");
-            RandoMenuItem<bool> RandoDreamersBtn = new RandoMenuItem<bool>(back, new Vector2(900, 960), "Dreamers", true, false);
-            RandoMenuItem<bool> RandoSkillsBtn = new RandoMenuItem<bool>(back, new Vector2(900, 880), "Skills", true, false);
-            RandoMenuItem<bool> RandoCharmsBtn = new RandoMenuItem<bool>(back, new Vector2(900, 800), "Charms", true, false);
-            RandoMenuItem<bool> RandoKeysBtn = new RandoMenuItem<bool>(back, new Vector2(900, 720), "Keys", true, false);
+            RandoMenuItem<string> RandoDreamersBtn = new RandoMenuItem<string>(back, new Vector2(900, 960), "Dreamers", "Always true");
+            RandoMenuItem<string> RandoSkillsBtn = new RandoMenuItem<string>(back, new Vector2(900, 880), "Skills", "Always true");
+            RandoMenuItem<string> RandoCharmsBtn = new RandoMenuItem<string>(back, new Vector2(900, 800), "Charms", "Always true");
+            RandoMenuItem<string> RandoKeysBtn = new RandoMenuItem<string>(back, new Vector2(900, 720), "Keys", "Always true");
             RandoMenuItem<bool> RandoGeoChestsBtn = new RandoMenuItem<bool>(back, new Vector2(900, 640), "Geo Chests", false, true);
             RandoMenuItem<bool> RandoMaskBtn = new RandoMenuItem<bool>(back, new Vector2(900, 560), "Mask Shards", false, true);
             RandoMenuItem<bool> RandoVesselBtn = new RandoMenuItem<bool>(back, new Vector2(900, 480), "Vessel Fragments", false, true);
@@ -64,23 +64,23 @@ namespace AreaRando
             RandoMenuItem<bool> RandoEggBtn = new RandoMenuItem<bool>(back, new Vector2(900, 240), "Rancid Eggs", false, true);
             RandoMenuItem<bool> RandoRelicsBtn = new RandoMenuItem<bool>(back, new Vector2(900, 160), "Relics", false, true);
             RandoMenuItem<string> RandoLongItemsBtn = new RandoMenuItem<string>(back, new Vector2(900, 80), "Longest Check", "Standard", "Longer Items", "Longer Quests", "All Locations", "Fast");
-
-            RandoMenuItem<string> presetSkipsBtn = new RandoMenuItem<string>(back, new Vector2(-900, 1040), "Preset", "Easy", "Hard", "Moglar", "Custom");
+            
+            RandoMenuItem<string> presetSkipsBtn = new RandoMenuItem<string>(back, new Vector2(-900, 1040), "Preset", "Easy", "Hard", "Custom");
             RandoMenuItem<bool> shadeSkipsBtn = new RandoMenuItem<bool>(back, new Vector2(-900, 960), "Shade Skips", false, true);
             RandoMenuItem<bool> acidSkipsBtn = new RandoMenuItem<bool>(back, new Vector2(-900, 880), "Acid Skips", false, true);
             RandoMenuItem<bool> spikeTunnelsBtn = new RandoMenuItem<bool>(back, new Vector2(-900, 800), "Spike Tunnels", false, true);
             RandoMenuItem<bool> miscSkipsBtn = new RandoMenuItem<bool>(back, new Vector2(-900, 720), "Misc Skips", false, true);
             RandoMenuItem<bool> fireballSkipsBtn = new RandoMenuItem<bool>(back, new Vector2(-900, 640), "Fireball Skips", false, true);
-            RandoMenuItem<bool> magolorBtn = new RandoMenuItem<bool>(back, new Vector2(-900, 560), "Mag Skips", false, true);
-            */
+            RandoMenuItem<bool> darkRoomsBtn = new RandoMenuItem<bool>(back, new Vector2(-900, 560), "Dark Rooms", false, true);
+            
             RandoMenuItem<bool> charmNotchBtn = new RandoMenuItem<bool>(back, new Vector2(-900, 300), "Salubra Notches", true, false);
             RandoMenuItem<bool> lemmBtn = new RandoMenuItem<bool>(back, new Vector2(-900, 220), "Lemm Sell All", true, false);
             RandoMenuItem<bool> jijiBtn = new RandoMenuItem<bool>(back, new Vector2(-900, 140), "Jiji Hints", true, false);
             RandoMenuItem<bool> PleasureHouseBtn = new RandoMenuItem<bool>(back, new Vector2(-900, 60), "Pleasure House Geo", true, false);
             RandoMenuItem<bool> EarlyGeoBtn = new RandoMenuItem<bool>(back, new Vector2(-900, -20), "Early Geo", true, false);
-            /*
+            
             RandoMenuItem<string> modeBtn = new RandoMenuItem<string>(back, new Vector2(0, 1040), "Mode", "Standard"); //, "No Claw", "All Bosses", "All Skills", "All Charms"
-            */
+            
             // Create seed entry field
             GameObject seedGameObject = back.Clone("Seed", MenuButton.MenuButtonType.Activate, new Vector2(0, 1130),
                 "Click to type a custom seed").gameObject;
@@ -118,9 +118,10 @@ namespace AreaRando
             };
 
             // Create some labels
-            CreateLabel(back, new Vector2(-900, 1130), "Required Skips: Hard");
+            CreateLabel(back, new Vector2(-900, 1130), "Required Skips");
             CreateLabel(back, new Vector2(-900, 400), "Quality of Life");
-            CreateLabel(back, new Vector2(900, 1130), "Randomization: Progressive");
+            CreateLabel(back, new Vector2(900, 1130), "Randomization");
+            CreateLabel(back, new Vector2(0, 200), "Area Randomizer expects use of Benchwarp");
             CreateLabel(back, new Vector2(0, 1300), "Seed:");
 
             // We don't need these old buttons anymore
@@ -133,7 +134,7 @@ namespace AreaRando
             playScreen.defaultHighlight = startRandoBtn;
 
             // Apply navigation info (up, right, down, left)
-            /*
+            
             startNormalBtn.SetNavigation(gameTypeBtn.Button, presetPoolsBtn.Button, backBtn, presetSkipsBtn.Button);
             startRandoBtn.SetNavigation(modeBtn.Button, presetPoolsBtn.Button, gameTypeBtn.Button, presetSkipsBtn.Button);
             startSteelNormalBtn.SetNavigation(gameTypeBtn.Button, presetPoolsBtn.Button, backBtn, presetSkipsBtn.Button);
@@ -141,15 +142,16 @@ namespace AreaRando
             modeBtn.Button.SetNavigation(backBtn, modeBtn.Button, startRandoBtn, modeBtn.Button);
             gameTypeBtn.Button.SetNavigation(startRandoBtn, presetPoolsBtn.Button, startNormalBtn, presetSkipsBtn.Button);
             backBtn.SetNavigation(startNormalBtn, backBtn, modeBtn.Button, backBtn);
+            
 
             presetSkipsBtn.Button.SetNavigation(PleasureHouseBtn.Button, startRandoBtn, shadeSkipsBtn.Button, presetSkipsBtn.Button);
             shadeSkipsBtn.Button.SetNavigation(presetSkipsBtn.Button, startRandoBtn, acidSkipsBtn.Button, shadeSkipsBtn.Button);
             acidSkipsBtn.Button.SetNavigation(shadeSkipsBtn.Button, startRandoBtn, spikeTunnelsBtn.Button, acidSkipsBtn.Button);
             spikeTunnelsBtn.Button.SetNavigation(acidSkipsBtn.Button, startRandoBtn, miscSkipsBtn.Button, spikeTunnelsBtn.Button);
             miscSkipsBtn.Button.SetNavigation(spikeTunnelsBtn.Button, startRandoBtn, fireballSkipsBtn.Button, miscSkipsBtn.Button);
-            fireballSkipsBtn.Button.SetNavigation(miscSkipsBtn.Button, startRandoBtn, magolorBtn.Button, fireballSkipsBtn.Button);
-            magolorBtn.Button.SetNavigation(fireballSkipsBtn.Button, startRandoBtn, charmNotchBtn.Button, magolorBtn.Button);
-            */
+            fireballSkipsBtn.Button.SetNavigation(miscSkipsBtn.Button, startRandoBtn, darkRoomsBtn.Button, fireballSkipsBtn.Button);
+            darkRoomsBtn.Button.SetNavigation(fireballSkipsBtn.Button, startRandoBtn, charmNotchBtn.Button, darkRoomsBtn.Button);
+            
 
             charmNotchBtn.Button.SetNavigation(EarlyGeoBtn.Button, startRandoBtn, lemmBtn.Button, charmNotchBtn.Button);
             lemmBtn.Button.SetNavigation(charmNotchBtn.Button, startRandoBtn, jijiBtn.Button, lemmBtn.Button);
@@ -157,7 +159,7 @@ namespace AreaRando
             PleasureHouseBtn.Button.SetNavigation(jijiBtn.Button, startRandoBtn, EarlyGeoBtn.Button, PleasureHouseBtn.Button);
             EarlyGeoBtn.Button.SetNavigation(PleasureHouseBtn.Button, startRandoBtn, charmNotchBtn.Button, EarlyGeoBtn.Button);
 
-            /*
+            
             presetPoolsBtn.Button.SetNavigation(RandoLongItemsBtn.Button, presetPoolsBtn.Button, RandoDreamersBtn.Button, startRandoBtn);
             RandoDreamersBtn.Button.SetNavigation(presetPoolsBtn.Button, RandoDreamersBtn.Button, RandoSkillsBtn.Button, startRandoBtn);
             RandoSkillsBtn.Button.SetNavigation(RandoDreamersBtn.Button, RandoSkillsBtn.Button, RandoCharmsBtn.Button, startRandoBtn);
@@ -171,6 +173,7 @@ namespace AreaRando
             RandoEggBtn.Button.SetNavigation(RandoNotchBtn.Button, RandoEggBtn.Button, RandoRelicsBtn.Button, startRandoBtn);
             RandoRelicsBtn.Button.SetNavigation(RandoEggBtn.Button, RandoRelicsBtn.Button, RandoLongItemsBtn.Button, startRandoBtn);
             RandoLongItemsBtn.Button.SetNavigation(RandoRelicsBtn.Button, RandoLongItemsBtn.Button, presetPoolsBtn.Button, startRandoBtn);
+            
 
             // Setup event for changing difficulty settings buttons
             void UpdateSkipsButtons(RandoMenuItem<string> item)
@@ -178,28 +181,20 @@ namespace AreaRando
                 switch (item.CurrentSelection)
                 {
                     case "Easy":
-                        SetShadeSkips(false);
+                        shadeSkipsBtn.SetSelection(false);
                         acidSkipsBtn.SetSelection(false);
                         spikeTunnelsBtn.SetSelection(false);
                         miscSkipsBtn.SetSelection(false);
                         fireballSkipsBtn.SetSelection(false);
-                        magolorBtn.SetSelection(false);
+                        darkRoomsBtn.SetSelection(false);
                         break;
                     case "Hard":
-                        SetShadeSkips(true);
+                        shadeSkipsBtn.SetSelection(true);
                         acidSkipsBtn.SetSelection(true);
                         spikeTunnelsBtn.SetSelection(true);
                         miscSkipsBtn.SetSelection(true);
                         fireballSkipsBtn.SetSelection(true);
-                        magolorBtn.SetSelection(false);
-                        break;
-                    case "Moglar":
-                        SetShadeSkips(true);
-                        acidSkipsBtn.SetSelection(true);
-                        spikeTunnelsBtn.SetSelection(true);
-                        miscSkipsBtn.SetSelection(true);
-                        fireballSkipsBtn.SetSelection(true);
-                        magolorBtn.SetSelection(true);
+                        darkRoomsBtn.SetSelection(true);
                         break;
                     case "Custom":
                         item.SetSelection("Easy");
@@ -210,15 +205,17 @@ namespace AreaRando
                         break;
                 }
             }
+
+            
             void UpdatePoolPreset(RandoMenuItem<string> item)
             {
                 switch (item.CurrentSelection)
                 {
                     case "Progressive":
-                        RandoDreamersBtn.SetSelection(true);
-                        RandoSkillsBtn.SetSelection(true);
-                        RandoCharmsBtn.SetSelection(true);
-                        RandoKeysBtn.SetSelection(true);
+                        //RandoDreamersBtn.SetSelection(true);
+                        //RandoSkillsBtn.SetSelection(true);
+                        //RandoCharmsBtn.SetSelection(true);
+                        //RandoKeysBtn.SetSelection(true);
                         RandoGeoChestsBtn.SetSelection(false);
                         RandoMaskBtn.SetSelection(false);
                         RandoVesselBtn.SetSelection(false);
@@ -229,10 +226,10 @@ namespace AreaRando
                         RandoLongItemsBtn.SetSelection("Standard");
                         break;
                     case "Completionist":
-                        RandoDreamersBtn.SetSelection(true);
-                        RandoSkillsBtn.SetSelection(true);
-                        RandoCharmsBtn.SetSelection(true);
-                        RandoKeysBtn.SetSelection(true);
+                        //RandoDreamersBtn.SetSelection(true);
+                        //RandoSkillsBtn.SetSelection(true);
+                        //RandoCharmsBtn.SetSelection(true);
+                       // RandoKeysBtn.SetSelection(true);
                         RandoGeoChestsBtn.SetSelection(true);
                         RandoMaskBtn.SetSelection(true);
                         RandoVesselBtn.SetSelection(true);
@@ -243,10 +240,10 @@ namespace AreaRando
                         RandoLongItemsBtn.SetSelection("Standard");
                         break;
                     case "Junk Pit":
-                        RandoDreamersBtn.SetSelection(true);
-                        RandoSkillsBtn.SetSelection(true);
-                        RandoCharmsBtn.SetSelection(true);
-                        RandoKeysBtn.SetSelection(true);
+                        //RandoDreamersBtn.SetSelection(true);
+                        //RandoSkillsBtn.SetSelection(true);
+                        //RandoCharmsBtn.SetSelection(true);
+                        //RandoKeysBtn.SetSelection(true);
                         RandoGeoChestsBtn.SetSelection(true);
                         RandoMaskBtn.SetSelection(true);
                         RandoVesselBtn.SetSelection(true);
@@ -272,14 +269,14 @@ namespace AreaRando
                     spikeTunnelsBtn.SetSelection(true);
                     miscSkipsBtn.SetSelection(true);
                     fireballSkipsBtn.SetSelection(true);
-
-                    presetSkipsBtn.SetSelection(magolorBtn.CurrentSelection ? "Moglar" : "Hard");
+                    darkRoomsBtn.SetSelection(true);
                 }
                 else if (item.CurrentSelection.StartsWith("All"))
                 {
                     presetPoolsBtn.SetSelection("Classic");
                 }
             }
+
 
             void SetShadeSkips(bool enabled)
             {
@@ -321,12 +318,12 @@ namespace AreaRando
             spikeTunnelsBtn.Changed += SkipsSettingChanged;
             miscSkipsBtn.Changed += SkipsSettingChanged;
             fireballSkipsBtn.Changed += SkipsSettingChanged;
-            magolorBtn.Changed += SkipsSettingChanged;
+            darkRoomsBtn.Changed += SkipsSettingChanged;
 
-            RandoDreamersBtn.Changed += PoolSettingChanged;
-            RandoSkillsBtn.Changed += PoolSettingChanged;
-            RandoCharmsBtn.Changed += PoolSettingChanged;
-            RandoKeysBtn.Changed += PoolSettingChanged;
+            //RandoDreamersBtn.Changed += PoolSettingChanged;
+            //RandoSkillsBtn.Changed += PoolSettingChanged;
+            //RandoCharmsBtn.Changed += PoolSettingChanged;
+            //RandoKeysBtn.Changed += PoolSettingChanged;
             RandoGeoChestsBtn.Changed += PoolSettingChanged;
             RandoMaskBtn.Changed += PoolSettingChanged;
             RandoVesselBtn.Changed += PoolSettingChanged;
@@ -373,7 +370,7 @@ namespace AreaRando
             
             gameTypeBtn.Button.AddEvent(EventTriggerType.Submit,
                 garbage => SwitchGameType(gameTypeBtn.CurrentSelection != "Normal"));
-                */
+            
             // Setup start game button events
             void StartGame(bool rando)
             {
@@ -387,22 +384,22 @@ namespace AreaRando
                 AreaRando.Instance.Settings.RandomizeSkills = true;
                 AreaRando.Instance.Settings.RandomizeCharms = true;
                 AreaRando.Instance.Settings.RandomizeKeys = true;
-                AreaRando.Instance.Settings.RandomizeGeoChests = false;
-                AreaRando.Instance.Settings.RandomizeMaskShards = false;
-                AreaRando.Instance.Settings.RandomizeVesselFragments = false;
-                AreaRando.Instance.Settings.RandomizePaleOre = false;
-                AreaRando.Instance.Settings.RandomizeCharmNotches = false;
-                AreaRando.Instance.Settings.RandomizeRancidEggs = false;
-                AreaRando.Instance.Settings.RandomizeRelics = false;
+                AreaRando.Instance.Settings.RandomizeGeoChests = RandoGeoChestsBtn.CurrentSelection;
+                AreaRando.Instance.Settings.RandomizeMaskShards = RandoMaskBtn.CurrentSelection;
+                AreaRando.Instance.Settings.RandomizeVesselFragments = RandoVesselBtn.CurrentSelection;
+                AreaRando.Instance.Settings.RandomizePaleOre = RandoOreBtn.CurrentSelection;
+                AreaRando.Instance.Settings.RandomizeCharmNotches = RandoNotchBtn.CurrentSelection;
+                AreaRando.Instance.Settings.RandomizeRancidEggs = RandoEggBtn.CurrentSelection;
+                AreaRando.Instance.Settings.RandomizeRelics = RandoRelicsBtn.CurrentSelection;
 
                 AreaRando.Instance.Settings.LongItemTier = 1;
-                /*
+                
                 if (RandoLongItemsBtn.CurrentSelection == "Standard") AreaRando.Instance.Settings.LongItemTier = 1;
                 if (RandoLongItemsBtn.CurrentSelection == "Longer Items") AreaRando.Instance.Settings.LongItemTier = 2;
                 if (RandoLongItemsBtn.CurrentSelection == "Longer Quests") AreaRando.Instance.Settings.LongItemTier = 3;
                 if (RandoLongItemsBtn.CurrentSelection == "All Locations") AreaRando.Instance.Settings.LongItemTier = 4;
                 if (RandoLongItemsBtn.CurrentSelection == "Fast") AreaRando.Instance.Settings.LongItemTier = 0;
-                */
+                
 
                 AreaRando.Instance.Settings.Randomizer = rando;
 
@@ -413,12 +410,12 @@ namespace AreaRando
                     AreaRando.Instance.Settings.AllSkills = false;
                     AreaRando.Instance.Settings.AllCharms = false;
 
-                    AreaRando.Instance.Settings.ShadeSkips = true;
-                    AreaRando.Instance.Settings.AcidSkips = true;
-                    AreaRando.Instance.Settings.SpikeTunnels = true;
-                    AreaRando.Instance.Settings.MiscSkips = true;
-                    AreaRando.Instance.Settings.FireballSkips = true;
-                    AreaRando.Instance.Settings.MagSkips = false;
+                    AreaRando.Instance.Settings.ShadeSkips = shadeSkipsBtn.CurrentSelection;
+                    AreaRando.Instance.Settings.AcidSkips = acidSkipsBtn.CurrentSelection;
+                    AreaRando.Instance.Settings.SpikeTunnels = spikeTunnelsBtn.CurrentSelection;
+                    AreaRando.Instance.Settings.MiscSkips = miscSkipsBtn.CurrentSelection;
+                    AreaRando.Instance.Settings.FireballSkips = fireballSkipsBtn.CurrentSelection;
+                    AreaRando.Instance.Settings.DarkRooms = darkRoomsBtn.CurrentSelection;
                 }
 
                 AreaRando.Instance.StartNewGame();
