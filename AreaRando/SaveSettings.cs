@@ -2,6 +2,7 @@
 using Modding;
 using AreaRando.Actions;
 using SeanprCore;
+using AreaRando.Randomization;
 
 namespace AreaRando
 {
@@ -11,12 +12,15 @@ namespace AreaRando
         private SerializableStringDictionary _itemPlacements = new SerializableStringDictionary();
         public SerializableStringDictionary _transitionPlacements = new SerializableStringDictionary();
         private SerializableStringDictionary _hintInformation = new SerializableStringDictionary();
+        private SerializableIntDictionary _obtainedProgression = new SerializableIntDictionary();
 
         /// <remarks>item, location</remarks>
         public (string, string)[] ItemPlacements => _itemPlacements.Select(pair => (pair.Key, pair.Value)).ToArray();
 
         // index is how many hints, pair is item, location
         public (string, string)[] Hints => _hintInformation.Select(pair => (pair.Key, pair.Value)).ToArray();
+
+        public int[] ObtainedProgression => _obtainedProgression.OrderBy(kvp => kvp.Key).Select(kvp => kvp.Value).ToArray();
 
         public SaveSettings()
         {
@@ -214,6 +218,43 @@ namespace AreaRando
         public void AddNewHint(string item, string location)
         {
             _hintInformation[item] = location;
+        }
+
+        public void InitializeObtainedProgression()
+        {
+            int[] obtained = new int[LogicManager.bitMaskMax + 1];
+            obtained = LogicManager.AddDifficultySettings(obtained);
+            for (int i=0; i < LogicManager.bitMaskMax + 1; i++)
+            {
+                _obtainedProgression.Add(i.ToString(), obtained[i]);
+            }
+        }
+        public void UpdateObtainedProgression(string item)
+        {
+            if (LogicManager.ItemNames.Contains(item) && !LogicManager.GetItemDef(item).progression) return;
+            if (!LogicManager.ItemNames.Contains(item) && !LogicManager.TransitionNames.Contains(item)) return;
+            int[] obtained = LogicManager.AddObtainedProgression(ObtainedProgression, item);
+            for (int i = 0; i < LogicManager.bitMaskMax + 1; i++)
+            {
+                _obtainedProgression[i.ToString()] = obtained[i];
+            }
+        }
+        public void UpdateObtainedProgressionByBoolName(string boolName)
+        {
+            string item = LogicManager.ItemNames.FirstOrDefault(_item => LogicManager.GetItemDef(_item).boolName == boolName);
+            if (string.IsNullOrEmpty(item))
+            {
+                if (Actions.RandomizerAction.AdditiveBoolNames.ContainsValue(boolName))
+                {
+                    item = Actions.RandomizerAction.AdditiveBoolNames.First(kvp => kvp.Value == boolName).Key;
+                }
+                else
+                {
+                    Logger.Log("Could not find item corresponding to: " + boolName);
+                    return;
+                }
+            }
+            UpdateObtainedProgression(item);
         }
     }
 }

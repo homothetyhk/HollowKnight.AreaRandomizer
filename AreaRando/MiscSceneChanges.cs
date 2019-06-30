@@ -534,6 +534,12 @@ namespace AreaRando
                         else PlayMakerFSM.BroadcastEvent("NOKEY");
                     }));
                     break;
+                case SceneNames.Waterways_01:
+                    if (GameManager.instance.entryGateName.StartsWith("t"))
+                    {
+                        Object.Destroy(GameObject.Find("waterways_manhole_open"));
+                    }
+                    break;
                 case SceneNames.Waterways_03:
                     if (AreaRando.Instance.Settings.Jiji)
                     {

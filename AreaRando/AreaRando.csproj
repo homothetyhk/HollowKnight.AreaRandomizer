@@ -91,6 +91,7 @@
     <Compile Include="Actions\ChangeShopContents.cs" />
     <Compile Include="Actions\ChangeChestGeo.cs" />
     <Compile Include="Actions\CreateNewShiny.cs" />
+    <Compile Include="RandoLogger.cs" />
     <Compile Include="Components\RandomizerTinkEffect.cs" />
     <Compile Include="Components\Shop.cs" />
     <Compile Include="Components\StickyWall.cs">

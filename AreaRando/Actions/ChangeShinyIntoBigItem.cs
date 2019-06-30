@@ -29,11 +29,12 @@ namespace AreaRando.Actions
         private readonly string _objectName;
         private readonly bool _playerdata;
         private readonly string _sceneName;
+        private readonly string _location;
 
         // BigItemDef array is meant to be for additive items
         // For example, items[0] could be vengeful spirit and items[1] would be shade soul
         public ChangeShinyIntoBigItem(string sceneName, string objectName, string fsmName, BigItemDef[] items,
-            string boolName, bool playerdata = false)
+            string boolName, string location, bool playerdata = false)
         {
             _sceneName = sceneName;
             _objectName = objectName;
@@ -41,6 +42,7 @@ namespace AreaRando.Actions
             _boolName = boolName;
             _playerdata = playerdata;
             _itemDefs = items;
+            _location = location;
         }
 
         public override ActionType Type => ActionType.PlayMakerFSM;
@@ -73,9 +75,22 @@ namespace AreaRando.Actions
                 pdBool.AddFirstAction(randBoolTest);
             }
 
+            string logBoolName = string.Empty;
+            for (int i = 0; i < _itemDefs.Length; i++)
+            {
+                if (!Ref.PD.GetBool(_itemDefs[i].BoolName))
+                {
+                    logBoolName = _itemDefs[i].BoolName;
+                    break;
+                }
+            }
+
             // Force the FSM to show the big item flash
             charm.ClearTransitions();
             charm.AddTransition("FINISHED", "Big Get Flash");
+            bigGetFlash.AddAction(new RandomizerExecuteLambda(() => RandoLogger.LogItemToTrackerByBoolName(logBoolName, _location)));
+            bigGetFlash.AddAction(new RandomizerExecuteLambda(() => RandoLogger.UpdateHelperLog()));
+            bigGetFlash.AddFirstAction(new RandomizerExecuteLambda(() => AreaRando.Instance.Settings.UpdateObtainedProgressionByBoolName(logBoolName)));
 
             // Set bool and show the popup after the flash
             bigGetFlash.AddAction(new RandomizerCallStaticMethod(

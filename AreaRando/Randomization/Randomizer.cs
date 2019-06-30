@@ -23,6 +23,7 @@ namespace AreaRando.Randomization
         private static List<string> unobtainedItems;
         private static int[] obtainedProgression;
         public static List<string> randomizedItems; //Non-geo, non-shop randomized items. Mainly used as a candidates list for the hint shop.
+        private static List<string> geoItems;
         private static List<string> shopNames;
         private static List<string> junkStandby;
         private static List<string> progressionStandby;
@@ -81,9 +82,7 @@ namespace AreaRando.Randomization
 
             while (true)
             {
-                Log(".");
                 Log("Beginning first pass of item randomization...");
-                Log(".");
                 SetupItemVariables();
                 randomizerAttempts++;
 
@@ -92,10 +91,8 @@ namespace AreaRando.Randomization
                     PlaceNextItem();
                 }
 
-                Log(".");
                 Log("First pass item randomization complete.");
                 Log("Beginning second pass...");
-                Log(".");
 
                 PlaceRemainingItems();
                 validated = CheckPlacementValidity();
@@ -107,6 +104,7 @@ namespace AreaRando.Randomization
             AreaRando.Instance.Log("Finished item randomization in " + itemWatch.Elapsed.TotalSeconds + " seconds.");
             itemWatch.Reset();
             LogAllPlacements();
+            RandoLogger.LogAllToSpoiler(AreaRando.Instance.Settings.ItemPlacements, AreaRando.Instance.Settings._transitionPlacements.Select(kvp => (kvp.Key, kvp.Value)).ToArray());
 
             //Create a randomly ordered list of all "real" items in floor locations
             List<string> goodPools = new List<string> { "Dreamer", "Skill", "Charm", "Key" };
@@ -118,6 +116,8 @@ namespace AreaRando.Randomization
                 AreaRando.Instance.Settings.AddNewHint(item, inverseNonShopItems[item]);
                 possibleHintItems.Remove(item);
             }
+
+            AreaRando.Instance.Settings.InitializeObtainedProgression();
 
             Done = true;
             AreaRando.Instance.Log("Randomization done");
@@ -204,6 +204,8 @@ namespace AreaRando.Randomization
             if (AreaRando.Instance.Settings.PleasureHouse) nonShopItems.Add("Pleasure_House", "Small_Reward_Geo");
 
             randomizedItems = unobtainedLocations.Where(name => !LogicManager.ShopNames.Contains(name) && LogicManager.GetItemDef(name).type != ItemType.Geo).ToList();
+            geoItems = unobtainedItems.Where(item => LogicManager.GetItemDef(item).type == ItemType.Geo).ToList();
+            unobtainedItems = unobtainedItems.Except(geoItems).ToList();
 
             firstPassDone = false;
             overflow = false;
@@ -910,6 +912,17 @@ namespace AreaRando.Randomization
             // Acquire unweighted accessible locations
             List<string> reachableLocations = GetReachableLocations(obtainedProgression);
             int reachableCount = reachableLocations.Count;
+            // Place geo pickups outside shops and toll locations
+            if (geoItems.Any() && reachableCount > 1)
+            {
+                List<string> geoLocations = unobtainedLocations.Except(reachableLocations).Except(LogicManager.ShopNames).Where(location => LogicManager.GetItemDef(location).cost == 0).ToList();
+                placeItem = geoItems[rand.Next(geoItems.Count)];
+                placeLocation = geoLocations[rand.Next(geoLocations.Count)];
+                geoItems.Remove(placeItem);
+                unobtainedLocations.Remove(placeLocation);
+                nonShopItems.Add(placeLocation, placeItem);
+                return;
+            }
             //We place items randomly while there are many reachable spaces
             if (reachableCount > 1 && unobtainedItems.Count > 0)
             {
@@ -1113,14 +1126,11 @@ namespace AreaRando.Randomization
 
         private static void LogAllPlacements()
         {
-            Log("Logging transition placements");
             foreach (KeyValuePair<string, string> kvp in transitionPlacements)
             {
                 LogTransitionPlacement(kvp.Key, kvp.Value);
             }
 
-
-            Log("Logging progression item placements:");
             foreach (KeyValuePair<string, List<string>> kvp in shopItems)
             {
                 foreach (string item in kvp.Value)
@@ -1137,7 +1147,6 @@ namespace AreaRando.Randomization
                 if (LogicManager.GetItemDef(kvp.Value).progression) LogItemPlacement(kvp.Value, kvp.Key);
             }
 
-            Log("Logging ordinary item placements:");
             foreach (KeyValuePair<string, List<string>> kvp in shopItems)
             {
                 foreach (string item in kvp.Value)
@@ -1157,13 +1166,10 @@ namespace AreaRando.Randomization
         private static void LogTransitionPlacement(string entrance, string exit)
         {
             AreaRando.Instance.Settings.AddTransitionPlacement(entrance, exit);
-            Log("Entrance " + entrance + " linked to exit " + exit);
         }
         private static void LogItemPlacement(string item, string location)
         {
             AreaRando.Instance.Settings.AddItemPlacement(item, location);
-            Log(
-                $"Putting item \"{item.Replace('_', ' ')}\" at \"{location.Replace('_', ' ')}\"");
         }
     }
 }

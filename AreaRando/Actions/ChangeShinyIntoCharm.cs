@@ -14,18 +14,20 @@ namespace AreaRando.Actions
         private readonly string _fsmName;
         private readonly string _objectName;
         private readonly string _sceneName;
+        private readonly string _location;
 
-        public ChangeShinyIntoCharm(string sceneName, string objectName, string fsmName, string boolName)
-            : this(sceneName, objectName, fsmName, Convert.ToInt32(boolName.Substring(9)))
+        public ChangeShinyIntoCharm(string sceneName, string objectName, string fsmName, string boolName, string location)
+            : this(sceneName, objectName, fsmName, Convert.ToInt32(boolName.Substring(9)), location)
         {
         }
 
-        public ChangeShinyIntoCharm(string sceneName, string objectName, string fsmName, int charmNum)
+        public ChangeShinyIntoCharm(string sceneName, string objectName, string fsmName, int charmNum, string location)
         {
             _sceneName = sceneName;
             _objectName = objectName;
             _fsmName = fsmName;
             _charmNum = charmNum;
+            _location = location;
 
             _boolName = $"gotCharm_{charmNum}";
         }
@@ -55,7 +57,10 @@ namespace AreaRando.Actions
             charm.ClearTransitions();
             charm.AddTransition("FINISHED", "Get Charm");
             getCharm.RemoveActionsOfType<SetPlayerDataBool>();
-            getCharm.AddAction(new RandomizerSetBool(_boolName, true, true));
+            getCharm.AddFirstAction(new RandomizerSetBool(_boolName, true, true));
+            getCharm.AddFirstAction(new RandomizerExecuteLambda(() => AreaRando.Instance.Settings.UpdateObtainedProgressionByBoolName(_boolName)));
+            getCharm.AddAction(new RandomizerExecuteLambda(() => RandoLogger.UpdateHelperLog()));
+            getCharm.AddAction(new RandomizerExecuteLambda(() => RandoLogger.LogItemToTrackerByBoolName(_boolName, _location)));
             fsm.GetState("Normal Msg").GetActionsOfType<SetFsmInt>()[0].setValue = _charmNum;
         }
     }

@@ -80,7 +80,7 @@ namespace AreaRando
         {
             if (sheetTitle == "Jiji" && key == "HIVE" && AreaRando.Instance.Settings.Jiji)
             {
-                return NextJijiHint() + "<page>" + NextJijiHint() + "<page>" + NextJijiHint();
+                return NextJijiHint() + "<page>" + NextJijiHint();
             }
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(sheetTitle))
             {
@@ -100,22 +100,42 @@ namespace AreaRando
         }
         public static string NextJijiHint()
         {
-            AreaRando.Instance.Log("Initial Hint Count: " + AreaRando.Instance.Settings.howManyHints);
             int hintMax = AreaRando.Instance.Settings.Hints.Length;
             string hintItemName = string.Empty;
             string hintItemSpot = string.Empty;
+            string hint = string.Empty;
             while (AreaRando.Instance.Settings.howManyHints < hintMax - 1)
             {
-                AreaRando.Instance.Settings.howManyHints++;
-                if (!PlayerData.instance.GetBool(LogicManager.GetItemDef(AreaRando.Instance.Settings.Hints[AreaRando.Instance.Settings.howManyHints].Item1).boolName))
+                string item = AreaRando.Instance.Settings.Hints[AreaRando.Instance.Settings.howManyHints].Item1;
+                string location = AreaRando.Instance.Settings.Hints[AreaRando.Instance.Settings.howManyHints].Item2;
+                hint = CreateHint(item, location);
+                RandoLogger.LogHintToTracker(hint);
+
+                if (Actions.RandomizerAction.AdditiveBoolNames.TryGetValue(item, out string additiveBoolName))
                 {
-                    hintItemName = AreaRando.Instance.Settings.Hints[AreaRando.Instance.Settings.howManyHints].Item1;
-                    hintItemSpot = AreaRando.Instance.Settings.Hints[AreaRando.Instance.Settings.howManyHints].Item2;
+                    if (!AreaRando.Instance.Settings.GetBool(false, additiveBoolName))
+                    {
+                        hintItemName = item;
+                        hintItemSpot = location;
+                        AreaRando.Instance.Settings.howManyHints++;
+                        break;
+                    }
+                }
+                else if (!PlayerData.instance.GetBool(LogicManager.GetItemDef(item).boolName))
+                {
+                    hintItemName = item;
+                    hintItemSpot = location;
+                    AreaRando.Instance.Settings.howManyHints++;
                     break;
                 }
+                AreaRando.Instance.Settings.howManyHints++;
             }
-            if (hintItemName == string.Empty || hintItemSpot == string.Empty) return "Oh! I guess I couldn't find any items you left behind. Since you're doing so well, though, I think I'll be keeping this meal.";
+            if (hintItemName == string.Empty || hintItemSpot == string.Empty || hint == string.Empty) return "Oh! I guess I couldn't find any items you left behind. Since you're doing so well, though, I think I'll be keeping this meal.";
 
+            return hint;
+        }
+        public static string CreateHint(string hintItemName, string hintItemSpot)
+        {
             ReqDef hintItem = LogicManager.GetItemDef(hintItemName);
             ReqDef hintSpot = LogicManager.GetItemDef(hintItemSpot);
             bool good = false;

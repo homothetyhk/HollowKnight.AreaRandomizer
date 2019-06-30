@@ -222,7 +222,7 @@
     <sceneName>Fungus2_06</sceneName>
     <doorName>top1</doorName>
     <areaName>Fungal_Wastes</areaName>
-    <logic>FUNGALWASTES</logic>
+    <logic>FUNGALWASTES + (ACID | DASH | WINGS)</logic>
   </transition>
   <transition name="Fungus2_21[right1]">
     <sceneName>Fungus2_21</sceneName>
@@ -234,7 +234,7 @@
     <sceneName>Fungus2_23</sceneName>
     <doorName>right2</doorName>
     <areaName>Fungal_Wastes</areaName>
-    <logic>FUNGALWASTES + (CLAW | WINGS) + LEFTWATERWAYS</logic>
+    <logic>FUNGALWASTES + ((CLAW + LEFTWATERWAYS) | (WINGS + (Waterways_01[top1] | Waterways_09[left1])))</logic>
   </transition>
   <transition name="Fungus2_15[left1]">
     <sceneName>Fungus2_15</sceneName>
@@ -298,7 +298,7 @@
     <sceneName>Deepnest_42</sceneName>
     <doorName>top1</doorName>
     <areaName>Deepnest</areaName>
-    <logic>DEEPNEST + (LANTERN | DARKROOMS) + CLAW</logic>
+    <logic>DEEPNEST + (LANTERN | DARKROOMS) + CLAW + (WINGS | MISCSKIPS)</logic>
   </transition>
   <transition name="Deepnest_39[door1]">
     <sceneName>Deepnest_39</sceneName>
@@ -390,7 +390,7 @@
     <sceneName>Deepnest_East_07</sceneName>
     <doorName>left2</doorName>
     <areaName>Kingdoms_Edge</areaName>
-    <logic>CENTRALKINGDOMSEDGE + (CLAW | WINGS)</logic>
+    <logic>Deepnest_East_09[right1] | (CENTRALKINGDOMSEDGE + (CLAW | WINGS))</logic>
   </transition>
   <transition name="Deepnest_East_09[left1]">
     <sceneName>Deepnest_East_09</sceneName>
@@ -540,7 +540,7 @@
     <sceneName>Ruins2_07</sceneName>
     <doorName>top1</doorName>
     <areaName>City_of_Tears</areaName>
-    <logic>RIGHTCITY</logic>
+    <logic>RIGHTCITY + (CLAW | WINGS)</logic>
   </transition>
   <transition name="Ruins2_10b[right1]">
     <sceneName>Ruins2_10b</sceneName>
@@ -552,7 +552,7 @@
     <sceneName>Ruins1_01</sceneName>
     <doorName>left1</doorName>
     <areaName>City_of_Tears</areaName>
-    <logic>LEFTCITY + (CLAW | WINGS)</logic>
+    <logic>(LEFTCITY + (CLAW | WINGS)) | LEFTELEVATOR</logic>
   </transition>
   <transition name="Ruins1_05b[bot1]">
     <sceneName>Ruins1_05b</sceneName>
@@ -707,7 +707,7 @@
     <sceneName>Deepnest_43</sceneName>
     <doorName>bot1</doorName>
     <areaName>Queens_Gardens</areaName>
-    <logic>QUEENSGARDENS + (CLAW | WINGS)</logic>
+    <logic>QUEENSGARDENS + (DASH | WINGS) + (CLAW | WINGS)</logic>
   </transition>
   <transition name="Fungus3_22[right1]">
     <sceneName>Fungus3_22</sceneName>
@@ -765,7 +765,7 @@
     <newShiny>true</newShiny>
     <x>54</x>
     <y>89</y>
-    <logic>RIGHTFOGCANYON + CLAW + DREAMNAIL + (ACID | SUPERDASH)</logic>
+    <logic>Fungus3_archive[left1] + CLAW + DREAMNAIL + (ACID | SUPERDASH)</logic>
     <type>Big</type>
     <pool>Dreamer</pool>
     <bigSpriteKey>Prompts.Monomon</bigSpriteKey>
@@ -915,7 +915,7 @@
         <sceneName>Abyss_10</sceneName>
         <objectName>Dish Plat</objectName>
         <replace>true</replace>
-        <logic>ABYSS + (CLAW | (WINGS + SHADOWDASH))</logic>
+        <logic>ABYSS + ((CLAW + (DASH | WINGS)) | (WINGS + SHADOWDASH))</logic>
         <type>Big</type>
         <pool>Skill</pool>
         <bigSpriteKey>Prompts.Shadowdash</bigSpriteKey>
@@ -937,7 +937,7 @@
         <sceneName>Waterways_13</sceneName>
         <objectName>Shiny Item Acid</objectName>
         <replace>true</replace>
-        <logic>RIGHTWATERWAYS + (ACID | (CLAW + DASH + SUPERDASH + ACIDSKIPS) | (CLAW + LEFTWATERWAYS))</logic>
+        <logic>RIGHTWATERWAYS + ((ACID + (CLAW | WINGS | MISCSKIPS)) | (CLAW + DASH + SUPERDASH + ACIDSKIPS) | (CLAW + LEFTWATERWAYS))</logic>
         <type>Big</type>
         <pool>Skill</pool>
         <bigSpriteKey>Prompts.Isma</bigSpriteKey>
@@ -1142,7 +1142,7 @@
         <sceneName>Room_nailmaster_03</sceneName>
         <objectName>NM Oro NPC</objectName>
         <replace>true</replace>
-        <logic>CENTRALKINGDOMSEDGE + (CLAW | WINGS | (ACID + DASH + MISCSKIPS))</logic>
+        <logic>CENTRALKINGDOMSEDGE + LEFTCITY + (CLAW | WINGS | (ACID + DASH + MISCSKIPS))</logic>
         <type>Big</type>
         <pool>Skill</pool>
         <bigSpriteKey>Prompts.DashSlash</bigSpriteKey>
@@ -2039,7 +2039,6 @@
     <progression>true</progression>
     <itemCandidate>true</itemCandidate>
   </item>
-  <!--TODO: Make Godtuner require simple key-->
   <item name="Godtuner">
     <boolName>hasGodfinder</boolName>
     <sceneName>GG_Waterways</sceneName>
@@ -2369,7 +2368,7 @@
     <sceneName>Fungus1_13</sceneName>
     <objectName>Vessel Fragment</objectName>
     <replace>true</replace>
-    <logic>GREENPATH + CLAW</logic>
+    <logic>GREENPATH + (CLAW | (MISCSKIPS + WINGS))</logic>
     <type>Trinket</type>
     <pool>Vessel</pool>
     <nameKey>RANDOMIZER_NAME_VESSEL_FRAGMENT</nameKey>
@@ -2412,7 +2411,7 @@
     <newShiny>true</newShiny>
     <x>65</x>
     <y>58</y>
-    <logic>ANCIENTBASIN + (CLAW | WINGS)</logic>
+    <logic>ANCIENTBASIN + LEFTCITY + (CLAW | WINGS)</logic>
     <type>Trinket</type>
     <pool>Vessel</pool>
     <nameKey>RANDOMIZER_NAME_VESSEL_FRAGMENT</nameKey>
@@ -2884,7 +2883,7 @@
     <sceneName>Deepnest_39</sceneName>
     <objectName>Egg Sac</objectName>
     <replace>true</replace>
-    <logic>DEEPNEST + (LANTERN | DARKROOMS) + (CLAW | WINGS)</logic>
+    <logic>DEEPNEST + (LANTERN | DARKROOMS) + (CLAW | (WINGS + MISCSKIPS))</logic>
     <type>Trinket</type>
     <pool>Egg</pool>
     <nameKey>INV_NAME_RANCIDEGG</nameKey>
@@ -3628,7 +3627,7 @@
     <objectName>Shiny Item</objectName>
     <fsmName>Shiny Control</fsmName>
     <replace>false</replace>
-    <logic>ABYSS + (CLAW | WINGS) + SHADOWDASH</logic>
+    <logic>ABYSS + ((CLAW + DASH) | WINGS) + SHADOWDASH</logic>
     <type>Trinket</type>
     <pool>Relic</pool>
     <nameKey>INV_NAME_TRINKET4</nameKey>
@@ -3677,6 +3676,7 @@
     <y>32</y>
     <logic></logic>
     <pool>Fake</pool>
+    <areaName>City_of_Tears</areaName>
     <isFake>true</isFake>
   </item>  
     <shop name="Sly">

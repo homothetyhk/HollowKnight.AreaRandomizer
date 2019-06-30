@@ -39,6 +39,7 @@ namespace AreaRando.Actions
 
             // Add geo to chest
             // Chest geo pool cannot be trusted, often spawns less than it should
+            spawnItems.AddAction(new RandomizerExecuteLambda(() => RandoLogger.LogItemToTrackerByGeo(_geoAmount)));
             spawnItems.AddAction(new RandomizerAddGeo(fsm.gameObject, _geoAmount));
 
             // Remove pre-existing geo from chest

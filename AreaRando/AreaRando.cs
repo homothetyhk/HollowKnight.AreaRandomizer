@@ -165,6 +165,9 @@ namespace AreaRando
                 _logicParseThread.Join();
             }
 
+            RandoLogger.InitializeTracker();
+            RandoLogger.InitializeSpoiler();
+
             try
             {
                 Randomizer.Randomize();
@@ -178,7 +181,7 @@ namespace AreaRando
 
         public override string GetVersion()
         {
-            string ver = "1.02";
+            string ver = "1.03";
             int minAPI = 51;
 
             bool apiTooLow = Convert.ToInt32(ModHooks.Instance.ModVersion.Split('-')[1]) < minAPI;
@@ -284,6 +287,14 @@ namespace AreaRando
         private void BoolSetOverride(string boolName, bool value)
         {
             PlayerData pd = Ref.PD;
+            if (value && Actions.RandomizerAction.ShopItemBoolNames.ContainsValue(boolName))
+            {
+                (string, string) pair = Actions.RandomizerAction.ShopItemBoolNames.FirstOrDefault(kvp => kvp.Value == boolName).Key;
+                AreaRando.Instance.Settings.UpdateObtainedProgression(pair.Item1);
+                RandoLogger.LogItemToTracker(pair.Item1, pair.Item2);
+                RandoLogger.UpdateHelperLog();
+            }
+
 
             // It's just way easier if I can treat spells as bools
             if (boolName == "hasVengefulSpirit" && value && pd.fireballLevel <= 0)
@@ -587,6 +598,13 @@ namespace AreaRando
 
             if (Instance.Settings._transitionPlacements.TryGetValue(transitionName, out string destination))
             {
+                if (!LogicManager.CheckForProgressionItem(Instance.Settings.ObtainedProgression, transitionName))
+                {
+                    RandoLogger.LogTransitionToTracker(transitionName, destination);
+                    Instance.Settings.UpdateObtainedProgression(transitionName);
+                    Instance.Settings.UpdateObtainedProgression(destination);
+                    RandoLogger.UpdateHelperLog();
+                }
                 info.SceneName = LogicManager.GetTransitionDef(destination).sceneName;
                 info.EntryGateName = LogicManager.GetTransitionDef(destination).doorName;
             }

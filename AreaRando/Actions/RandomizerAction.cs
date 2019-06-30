@@ -19,7 +19,8 @@ namespace AreaRando.Actions
         }
 
         private static readonly List<RandomizerAction> Actions = new List<RandomizerAction>();
-
+        public static Dictionary<string, string> AdditiveBoolNames = new Dictionary<string, string>(); // item name, additive bool name
+        public static Dictionary<(string, string), string> ShopItemBoolNames = new Dictionary<(string, string), string>(); // (item name, shop name), shop item bool name
         public abstract ActionType Type { get; }
 
         public static void ClearActions()
@@ -108,21 +109,21 @@ namespace AreaRando.Actions
                             case ItemType.Shop:
                                 if (newItem.trinketNum > 0)
                                 {
-                                    Actions.Add(new ChangeShinyIntoTrinket(oldItem.sceneName, oldItem.objectName, oldItem.fsmName, newItem.trinketNum, newItem.boolName));
+                                    Actions.Add(new ChangeShinyIntoTrinket(oldItem.sceneName, oldItem.objectName, oldItem.fsmName, newItem.trinketNum, newItem.boolName, location));
                                     if (!string.IsNullOrEmpty(oldItem.altObjectName))
                                     {
                                         Actions.Add(new ChangeShinyIntoTrinket(oldItem.sceneName, oldItem.altObjectName,
-                                            oldItem.fsmName, newItem.trinketNum, newItem.boolName));
+                                            oldItem.fsmName, newItem.trinketNum, newItem.boolName, location));
                                     }
                                     break;
                                 }
                                 Actions.Add(new ChangeShinyIntoCharm(oldItem.sceneName, oldItem.objectName,
-                                        oldItem.fsmName, newItem.boolName));
+                                        oldItem.fsmName, newItem.boolName, location));
 
                                 if (!string.IsNullOrEmpty(oldItem.altObjectName))
                                 {
                                     Actions.Add(new ChangeShinyIntoCharm(oldItem.sceneName, oldItem.altObjectName,
-                                        oldItem.fsmName, newItem.boolName));
+                                        oldItem.fsmName, newItem.boolName, location));
                                 }
                                 break;
                             case ItemType.Big:
@@ -130,11 +131,11 @@ namespace AreaRando.Actions
                                 BigItemDef[] newItemsArray = GetBigItemDefArray(newItemName);
 
                                 Actions.Add(new ChangeShinyIntoBigItem(oldItem.sceneName, oldItem.objectName,
-                                    oldItem.fsmName, newItemsArray, randomizerBoolName, playerdata));
+                                    oldItem.fsmName, newItemsArray, randomizerBoolName, location, playerdata));
                                 if (!string.IsNullOrEmpty(oldItem.altObjectName))
                                 {
                                     Actions.Add(new ChangeShinyIntoBigItem(oldItem.sceneName, oldItem.altObjectName,
-                                        oldItem.fsmName, newItemsArray, randomizerBoolName, playerdata));
+                                        oldItem.fsmName, newItemsArray, randomizerBoolName, location, playerdata));
                                 }
 
                                 break;
@@ -147,22 +148,22 @@ namespace AreaRando.Actions
                                 else
                                 {
                                     Actions.Add(new ChangeShinyIntoGeo(oldItem.sceneName, oldItem.objectName,
-                                        oldItem.fsmName, newItem.boolName, newItem.geo));
+                                        oldItem.fsmName, newItem.boolName, newItem.geo, location));
 
                                     if (!string.IsNullOrEmpty(oldItem.altObjectName))
                                     {
                                         Actions.Add(new ChangeShinyIntoGeo(oldItem.sceneName, oldItem.altObjectName,
-                                            oldItem.fsmName, newItem.boolName, newItem.geo));
+                                            oldItem.fsmName, newItem.boolName, newItem.geo, location));
                                     }
                                 }
 
                                 break;
                             case ItemType.Trinket:
-                                Actions.Add(new ChangeShinyIntoTrinket(oldItem.sceneName, oldItem.objectName, oldItem.fsmName, newItem.trinketNum, newItem.boolName));
+                                Actions.Add(new ChangeShinyIntoTrinket(oldItem.sceneName, oldItem.objectName, oldItem.fsmName, newItem.trinketNum, newItem.boolName, location));
                                 if (!string.IsNullOrEmpty(oldItem.altObjectName))
                                 {
                                     Actions.Add(new ChangeShinyIntoTrinket(oldItem.sceneName, oldItem.altObjectName,
-                                        oldItem.fsmName, newItem.trinketNum, newItem.boolName));
+                                        oldItem.fsmName, newItem.trinketNum, newItem.boolName, location));
                                 }
                                 break;
                             default:
@@ -240,6 +241,8 @@ namespace AreaRando.Actions
                 {
                     newItem.boolName = "AreaRando.ShopKingsoul" + shopAdditiveItems++;
                 }
+
+                ShopItemBoolNames[(shopItem, shopName)] = newItem.boolName;
 
                 ShopItemDef newItemDef = new ShopItemDef
                 {
@@ -327,6 +330,7 @@ namespace AreaRando.Actions
             }
 
             additiveCounts[prefix] = additiveCounts[prefix] + 1;
+            AdditiveBoolNames[boolName] = prefix + additiveCounts[prefix];
             return prefix + additiveCounts[prefix];
         }
 
